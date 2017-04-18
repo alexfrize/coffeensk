@@ -1,8 +1,13 @@
-var postcss = require('gulp-postcss');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var babelify = require('babelify');
+var browserify = require('browserify')
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 var browserSync = require('browser-sync');
 var autoprefixer = require('autoprefixer');
+var postcss = require('gulp-postcss');
+
 
 gulp.task('browser-sync', function() {
 	browserSync({
@@ -22,7 +27,21 @@ gulp.task('sass', function() {
 	.pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('watch', ['sass', 'browser-sync'], function() {
+gulp.task('babel', () => {
+	browserify('app/es2015/app.jsx')
+	.transform('babelify', {
+		presets: ['es2015']
+	})
+	.bundle()	
+	.pipe(source('app.js'))
+	.pipe(buffer())
+	.pipe(gulp.dest('app/js'))
+	.pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('watch', ['sass', 'babel', 'browser-sync'], function() {
 	gulp.watch('app/scss/*.scss', ['sass']);
 	gulp.watch('app/*.html', browserSync.reload);
+	gulp.watch('app/es2015/*.jsx',  ['babel']);
+	gulp.watch('app/es2015/components/*.jsx',  ['babel']);
 });

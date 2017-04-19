@@ -1451,13 +1451,139 @@ var ShopCoffee = function (_React$Component) {
 	function ShopCoffee() {
 		_classCallCheck(this, ShopCoffee);
 
-		return _possibleConstructorReturn(this, (ShopCoffee.__proto__ || Object.getPrototypeOf(ShopCoffee)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (ShopCoffee.__proto__ || Object.getPrototypeOf(ShopCoffee)).call(this));
+
+		console.log("ShopCoffee /constructor()");
+		_this.state = { shopItems: [] };
+		console.log("---", _this.state.shopItems);
+
+		return _this;
 	}
 
 	_createClass(ShopCoffee, [{
+		key: "getData",
+		value: function getData() {
+			var _this2 = this;
+
+			var url = "http://localhost:3000/data/coffee.json";
+			fetch(url).then(function (resp) {
+				return resp.json();
+			}).then(function (data) {
+				console.log("data", data);
+				_this2.state.shopItems = data;
+				console.log("this.state.shopItems --", _this2.state.shopItems);
+			}).catch(function (error) {
+				return console.error("Ошибка загрузки данных из файла", url);
+			});
+		}
+	}, {
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			this.getData();
+		}
+	}, {
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			var _this3 = this;
+
+			setInterval(function () {
+				return _this3.setState(_this3.state);
+			}, 1000);
+		}
+	}, {
 		key: "render",
 		value: function render() {
-			console.log("ShopCoffee /");
+			var itemsArr = [];
+			var itemsRow = [];
+
+			console.log("this.state.shopItems ===", this.state.shopItems);
+			for (var i = 0; i < this.state.shopItems.length; i++) {
+
+				var item = this.state.shopItems[i];
+				console.log("===== item =====", item);
+				console.log("this.state.shopItems.length==", this.state.shopItems.length);
+
+				itemsArr.push(_react2.default.createElement(
+					"div",
+					{ className: "shop-coffee__item", key: "item" + i },
+					_react2.default.createElement(
+						"div",
+						{ className: "shop-coffee__item__inner" },
+						_react2.default.createElement(
+							"div",
+							{ className: "row" },
+							_react2.default.createElement(
+								"div",
+								{ className: "shop-coffee__item__kg" },
+								_react2.default.createElement(
+									"p",
+									{ className: "shop-coffee__item__kg__text" },
+									item.weight
+								)
+							),
+							_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
+							_react2.default.createElement(
+								"div",
+								{ className: "shop-coffee__item__price" },
+								_react2.default.createElement(
+									"p",
+									{ className: "shop-coffee__item__price__text" },
+									item.price
+								)
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "row" },
+							_react2.default.createElement(
+								"div",
+								{ className: "shop-coffee__item__image" },
+								_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "row" },
+							_react2.default.createElement(
+								"div",
+								{ className: "shop-coffee__item__description" },
+								_react2.default.createElement(
+									"p",
+									{ className: "shop-coffee__item__description__text" },
+									item.title
+								),
+								_react2.default.createElement(
+									"p",
+									{ className: "shop-coffee__item__description__text" },
+									item.description
+								)
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "row" },
+							_react2.default.createElement(
+								"div",
+								{ className: "shop-coffee__item__button-container" },
+								_react2.default.createElement(
+									"button",
+									{ className: "shop-coffee__item__button-container__button" },
+									"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
+								)
+							)
+						)
+					)
+				));
+
+				if (i > 0 && i % 3 == 0 || i == this.state.shopItems.length - 1) {
+					itemsRow.push(_react2.default.createElement(
+						"div",
+						{ className: "row", key: "row" + i },
+						itemsArr
+					));
+					itemsArr = [];
+				}
+			}
 			return _react2.default.createElement(
 				"section",
 				{ className: "shop-coffee" },
@@ -1477,542 +1603,7 @@ var ShopCoffee = function (_React$Component) {
 							)
 						)
 					),
-					_react2.default.createElement(
-						"div",
-						{ className: "row" },
-						_react2.default.createElement(
-							"div",
-							{ className: "shop-coffee__item" },
-							_react2.default.createElement(
-								"div",
-								{ className: "shop-coffee__item__inner" },
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__kg" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__kg__text" },
-											"1 \u043A\u0433"
-										)
-									),
-									_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__price__text" },
-											"950 \u0440\u0443\u0431."
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__image" },
-										_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__description" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__description__text" },
-											"Alta Roma Espresso \u0410\u0440\u0430\u0431\u0438\u043A\u0430-70%, \u0420\u043E\u0431\u0443\u0441\u0442\u0430-30%"
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__button-container" },
-										_react2.default.createElement(
-											"button",
-											{ className: "shop-coffee__item__button-container__button" },
-											"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "shop-coffee__item" },
-							_react2.default.createElement(
-								"div",
-								{ className: "shop-coffee__item__inner" },
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__kg" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__kg__text" },
-											"1 \u043A\u0433"
-										)
-									),
-									_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__price__text" },
-											"950 \u0440\u0443\u0431."
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__image" },
-										_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__description" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__description__text" },
-											"Alta Roma Espresso \u0410\u0440\u0430\u0431\u0438\u043A\u0430-70%, \u0420\u043E\u0431\u0443\u0441\u0442\u0430-30%"
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__button-container" },
-										_react2.default.createElement(
-											"button",
-											{ className: "shop-coffee__item__button-container__button" },
-											"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "shop-coffee__item" },
-							_react2.default.createElement(
-								"div",
-								{ className: "shop-coffee__item__inner" },
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__kg" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__kg__text" },
-											"1 \u043A\u0433"
-										)
-									),
-									_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__price__text" },
-											"950 \u0440\u0443\u0431."
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__image" },
-										_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__description" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__description__text" },
-											"Alta Roma Espresso \u0410\u0440\u0430\u0431\u0438\u043A\u0430-70%, \u0420\u043E\u0431\u0443\u0441\u0442\u0430-30%"
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__button-container" },
-										_react2.default.createElement(
-											"button",
-											{ className: "shop-coffee__item__button-container__button" },
-											"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "shop-coffee__item" },
-							_react2.default.createElement(
-								"div",
-								{ className: "shop-coffee__item__inner" },
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__kg" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__kg__text" },
-											"1 \u043A\u0433"
-										)
-									),
-									_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__price__text" },
-											"950 \u0440\u0443\u0431."
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__image" },
-										_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__description" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__description__text" },
-											"Alta Roma Espresso \u0410\u0440\u0430\u0431\u0438\u043A\u0430-70%, \u0420\u043E\u0431\u0443\u0441\u0442\u0430-30%"
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__button-container" },
-										_react2.default.createElement(
-											"button",
-											{ className: "shop-coffee__item__button-container__button" },
-											"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
-										)
-									)
-								)
-							)
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "row" },
-						_react2.default.createElement(
-							"div",
-							{ className: "shop-coffee__item" },
-							_react2.default.createElement(
-								"div",
-								{ className: "shop-coffee__item__inner" },
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__kg" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__kg__text" },
-											"1 \u043A\u0433"
-										)
-									),
-									_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__price__text" },
-											"950 \u0440\u0443\u0431."
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__image" },
-										_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__description" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__description__text" },
-											"Alta Roma Espresso \u0410\u0440\u0430\u0431\u0438\u043A\u0430-70%, \u0420\u043E\u0431\u0443\u0441\u0442\u0430-30%"
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__button-container" },
-										_react2.default.createElement(
-											"button",
-											{ className: "shop-coffee__item__button-container__button" },
-											"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "shop-coffee__item" },
-							_react2.default.createElement(
-								"div",
-								{ className: "shop-coffee__item__inner" },
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__kg" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__kg__text" },
-											"1 \u043A\u0433"
-										)
-									),
-									_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__price__text" },
-											"950 \u0440\u0443\u0431."
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__image" },
-										_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__description" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__description__text" },
-											"Alta Roma Espresso \u0410\u0440\u0430\u0431\u0438\u043A\u0430-70%, \u0420\u043E\u0431\u0443\u0441\u0442\u0430-30%"
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__button-container" },
-										_react2.default.createElement(
-											"button",
-											{ className: "shop-coffee__item__button-container__button" },
-											"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "shop-coffee__item" },
-							_react2.default.createElement(
-								"div",
-								{ className: "shop-coffee__item__inner" },
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__kg" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__kg__text" },
-											"1 \u043A\u0433"
-										)
-									),
-									_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__price__text" },
-											"950 \u0440\u0443\u0431."
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__image" },
-										_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__description" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__description__text" },
-											"Alta Roma Espresso \u0410\u0440\u0430\u0431\u0438\u043A\u0430-70%, \u0420\u043E\u0431\u0443\u0441\u0442\u0430-30%"
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__button-container" },
-										_react2.default.createElement(
-											"button",
-											{ className: "shop-coffee__item__button-container__button" },
-											"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "shop-coffee__item" },
-							_react2.default.createElement(
-								"div",
-								{ className: "shop-coffee__item__inner" },
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__kg" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__kg__text" },
-											"1 \u043A\u0433"
-										)
-									),
-									_react2.default.createElement("div", { className: "shop-coffee__item__space" }),
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__price__text" },
-											"950 \u0440\u0443\u0431."
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__image" },
-										_react2.default.createElement("img", { className: "shop-coffee__item__image__img", src: "img/template-img__coffee-shop.jpg" })
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__description" },
-										_react2.default.createElement(
-											"p",
-											{ className: "shop-coffee__item__description__text" },
-											"Alta Roma Espresso \u0410\u0440\u0430\u0431\u0438\u043A\u0430-70%, \u0420\u043E\u0431\u0443\u0441\u0442\u0430-30%"
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "row" },
-									_react2.default.createElement(
-										"div",
-										{ className: "shop-coffee__item__button-container" },
-										_react2.default.createElement(
-											"button",
-											{ className: "shop-coffee__item__button-container__button" },
-											"\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
-										)
-									)
-								)
-							)
-						)
-					)
+					itemsRow
 				)
 			);
 		}

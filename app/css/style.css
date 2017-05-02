@@ -8465,11 +8465,13 @@ p {
     text-align: center;
     width: 10%; }
   .cart .cart__table tr:last-child td {
-    border-top: 1px dashed #491404;
+    border-top: 1px solid #491404;
     font-weight: 700; }
   .cart .cart__table .cart__table__delete-button {
     padding: 5px 8px;
-    font-size: 12px; }
+    font-size: 12px;
+    background: transparent;
+    color: #491404; }
 
 .cart .cart__next-button-container {
   text-align: right; }

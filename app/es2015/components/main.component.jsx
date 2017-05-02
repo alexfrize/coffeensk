@@ -51,7 +51,7 @@ export class Main extends React.Component {
 				<Header />
 				<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart}/>
 				<Checkout itemsInCart = {this.state.itemsInCart} />
-				<ShopCoffee addNewItemToCart = {this.addNewItemToCart}/>
+				<ShopCoffee itemsInCart = {this.state.itemsInCart} addNewItemToCart = {this.addNewItemToCart}/>
 				<Rent />
 				<Repair />
 				<Contacts />				

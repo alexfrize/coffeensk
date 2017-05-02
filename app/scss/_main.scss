@@ -8,6 +8,7 @@
 	.cart__table {
 		@extend .main-table;
 		min-height: 80px;
+
 		td:first-child {
 			border-right: 1px dashed $brown;	
 		}
@@ -36,9 +37,8 @@
 			width: 10%;
 		}
 		tr:last-child {
-
 			td {
-				border-top: 1px dashed $brown;
+				border-top: 1px solid $brown;
 				font-weight: $bold;
 			}
 		}	
@@ -46,6 +46,8 @@
 			@extend .main-button;
 			padding: 5px 8px;
 			font-size: 12px;
+			background: transparent;
+			color: $brown;
 		}	
 	}
 	.cart__next-button-container {

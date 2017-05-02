@@ -6,35 +6,26 @@ export default class ShopCoffee extends React.Component {
 		console.log("ShopCoffee /constructor()");
 		console.log("ShopCoffee / this.props", this.props);
 		this.state = {shopItems : [], itemsInCart : []};
-		//this.itemsInCart = [];
 		this.getData();
 	}
 
 // =============== Добавляет выбранный товар в корзину ===============
 	addItemToCart(i) {
-		//console.log("addItemToCart() i == ",i);
-		//console.log("addItemToCart() :: this.props", this.props);
 		let newSelectedItem = this.state.shopItems[i];
-		//this.state.itemsInCart.push(newSelectedItem);
-		//var newStateArray = [...this.state.itemsInCart, newSelectedItem];
-		var newStateArray = this.state.itemsInCart;
-		newStateArray.push(newSelectedItem);
-		//var newStateArray = this.state.itemsInCart;
+		let newStateArray = this.state.itemsInCart;
+		// Проверяем, есть ли уже такой товар в корзине
+		if (newStateArray.filter( el => el == newSelectedItem).length == 0) {
+			newStateArray.push(newSelectedItem);
+		}
 		this.setState({itemsInCart : newStateArray});
-
-		///////////////////////////
-		//this.setState({itemsInCart : this.state.shopItems[i]});
-
-		console.log("newSelectedItem == ",newSelectedItem);
-		console.log("newStateArray ==" , newStateArray);
-		console.log("-- this.state ==" , this.state);
-		console.log("-- this.props ==" , this.props);
-		console.log("-- this.state.itemsInCart ==" , this.state.itemsInCart);
-		// this.itemsInCart.push(newSelectedItem);
 		this.props.addNewItemToCart(newStateArray);
-
-
 	}
+
+    componentWillReceiveProps(nextProps) {
+    	if (nextProps.itemsInCart != this.state.itemsInCart) {
+    		this.setState({itemsInCart : nextProps.itemsInCart});
+    	}
+    }
 
 	getData() {
 		const url="/data/coffee.json";
@@ -89,7 +80,7 @@ export default class ShopCoffee extends React.Component {
 									<div className="row">
 										<div className="shop-coffee__item__button-container">
 											<button className="shop-coffee__item__button-container__button" onClick={this.addItemToCart.bind(this, i)}>
-												Заказать
+												Добавить
 											</button>
 										</div>
 									</div>

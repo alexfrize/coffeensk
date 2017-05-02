@@ -29,6 +29,11 @@
 		td:nth-child(4) {
 			text-align: center;
 			width: 20%;
+			border-right: 1px dashed $brown;
+		}		
+		td:nth-child(5) {
+			text-align: center;
+			width: 10%;
 		}
 		tr:last-child {
 
@@ -36,7 +41,12 @@
 				border-top: 1px dashed $brown;
 				font-weight: $bold;
 			}
-		}		
+		}	
+		.cart__table__delete-button {
+			@extend .main-button;
+			padding: 5px 8px;
+			font-size: 12px;
+		}	
 	}
 	.cart__next-button-container {
 		text-align: right;

@@ -1,6 +1,16 @@
 import React from "react";
 
 export default class Checkout extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {itemsInCart : []};
+	}
+	componentWillReceiveProps(nextProps) {
+    	if (nextProps.itemsInCart != this.state.itemsInCart) {
+    		this.setState({itemsInCart : nextProps.itemsInCart});
+    	}
+    }
+
 	render() {
 		console.log("Checkout /");
 		return(
@@ -19,8 +29,7 @@ export default class Checkout extends React.Component {
 								Детали заказа:
 							</p>
 							<ul className="main-text">
-								<li>Alta Roma Espresso Арабика-70%, Робуста-30% - 1 шт.</li>
-								<li>Espresso Alta Арабика-75%, Робуста-25% - 2 шт.</li>
+								{this.state.itemsInCart.length ? this.state.itemsInCart.map((item, i) => <li key={i}>{item.title}</li>) : <li>В корзине нет заказов</li>}
 							</ul>
 						</div>
 						<div className="col-md-6">

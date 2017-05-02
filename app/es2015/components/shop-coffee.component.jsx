@@ -1,47 +1,62 @@
 import React from "react";
 
 export default class ShopCoffee extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		console.log("ShopCoffee /constructor()");
-		this.state = {shopItems : []};
-		console.log("---",this.state.shopItems);
+		console.log("ShopCoffee / this.props", this.props);
+		this.state = {shopItems : [], itemsInCart : []};
+		//this.itemsInCart = [];
+		this.getData();
+	}
+
+// =============== Добавляет выбранный товар в корзину ===============
+	addItemToCart(i) {
+		//console.log("addItemToCart() i == ",i);
+		//console.log("addItemToCart() :: this.props", this.props);
+		let newSelectedItem = this.state.shopItems[i];
+		//this.state.itemsInCart.push(newSelectedItem);
+		//var newStateArray = [...this.state.itemsInCart, newSelectedItem];
+		var newStateArray = this.state.itemsInCart;
+		newStateArray.push(newSelectedItem);
+		//var newStateArray = this.state.itemsInCart;
+		this.setState({itemsInCart : newStateArray});
+
+		///////////////////////////
+		//this.setState({itemsInCart : this.state.shopItems[i]});
+
+		console.log("newSelectedItem == ",newSelectedItem);
+		console.log("newStateArray ==" , newStateArray);
+		console.log("-- this.state ==" , this.state);
+		console.log("-- this.props ==" , this.props);
+		console.log("-- this.state.itemsInCart ==" , this.state.itemsInCart);
+		// this.itemsInCart.push(newSelectedItem);
+		this.props.addNewItemToCart(newStateArray);
+
 
 	}
 
-
 	getData() {
-		const url="http://localhost:3000/data/coffee.json";
+		const url="/data/coffee.json";
 		fetch(url)
 			.then((resp) => resp.json())
 			.then((data) => {
-				console.log("data",data);
-				this.state.shopItems = data;
-				console.log("this.state.shopItems --",this.state.shopItems);
-				
+				this.setState({shopItems : data});
 			})
 		.catch((error) => console.error("Ошибка загрузки данных из файла", url));
 		
 	}
 
 
-	componentWillMount() {
-		this.getData();
-	}
-	 componentDidMount() {
-        setInterval(() => this.setState(this.state), 1000);
-    }
-
 	render() {
 		var itemsArr = [];
 		var itemsRow = [];
 
-		console.log("this.state.shopItems ===", this.state.shopItems);
+		//console.log("this.state.shopItems ===", this.state.shopItems);
 		for (let i=0; i < this.state.shopItems.length; i++) {
 
 			let item = this.state.shopItems[i];
-			console.log("===== item =====", item);
-			console.log("this.state.shopItems.length==", this.state.shopItems.length);
+
 			
 			itemsArr.push(
 							<div className="shop-coffee__item" key={"item"+i}> 
@@ -53,7 +68,7 @@ export default class ShopCoffee extends React.Component {
 										<div className="shop-coffee__item__space">
 										</div>
 										<div className="shop-coffee__item__price">
-											<p className="shop-coffee__item__price__text">{item.price}</p>
+											<p className="shop-coffee__item__price__text">{item.price} руб.</p>
 										</div>	
 									</div>	
 									<div className="row">												
@@ -73,7 +88,7 @@ export default class ShopCoffee extends React.Component {
 									</div>
 									<div className="row">
 										<div className="shop-coffee__item__button-container">
-											<button className="shop-coffee__item__button-container__button">
+											<button className="shop-coffee__item__button-container__button" onClick={this.addItemToCart.bind(this, i)}>
 												Заказать
 											</button>
 										</div>

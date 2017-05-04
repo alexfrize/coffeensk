@@ -7,7 +7,9 @@ import ShopCoffee from "./shop-coffee.component.jsx";
 import Rent from "./rent.component.jsx";
 import Repair from "./repair.component.jsx";
 import Contacts from "./contacts.component.jsx";
+import ToCartButton from "./to-cart-button.component.jsx";
 import { connect } from "react-redux";
+
 
 export class Main extends React.Component {
 	constructor(props) {
@@ -51,6 +53,7 @@ export class Main extends React.Component {
 				<Header />
 				<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart}/>
 				<Checkout itemsInCart = {this.state.itemsInCart} />
+				<ToCartButton itemsInCart = {this.state.itemsInCart} />
 				<ShopCoffee itemsInCart = {this.state.itemsInCart} addNewItemToCart = {this.addNewItemToCart}/>
 				<Rent />
 				<Repair />

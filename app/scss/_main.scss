@@ -1,3 +1,43 @@
+/* ============= Кнопка, ведущая в корзину товаров ============= */
+.to-cart-button {
+	@extend %transition;
+	z-index: 100;
+	position: fixed;
+	bottom: 0;
+	right : 0;
+	background: $brown url($imgpath + 'to-cart-button__img.png') no-repeat;
+	background-size: contain;
+	width: 70px;
+	height: 70px;
+	&:hover {
+		cursor: pointer;
+	}
+
+	.to-cart-button__text-container {
+		position: absolute;
+		top: 10%;
+		left: 61%;
+		width: 28%;
+		height: 28%;		
+		border-radius: 30px;
+		border: 2px solid $lbrown;
+		background: white;
+		color: white;
+		.to-cart-button__text-container__text {
+			text-align: center;
+			padding: 0;
+			margin-top: 0px;
+			font: {
+				family: $opensans;
+				size: 10px;
+				color: $brown;
+			}
+		}
+
+	}
+
+}
+
  /* ============= Корзина товаров ============= */
 .cart {
 	.cart__title-container {

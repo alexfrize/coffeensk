@@ -54,37 +54,3 @@ export default class CheckoutForm extends React.Component {
     );
   }
 }
-
-
-// export default class CheckoutForm extends React.Component {
-// 	constructor(props) {
-// 		super(props);
-// 		this.state =	{	customerName : ""	};
-// 		this.handleInput = this.handleInput.bind(this);
-// 		this.handleSubmit = this.handleSubmit.bind(this);
-		
-// 	}
-// 	handleInput(event) {
-// 		console.log("handleInput(event)", event.target.customerName);
-// 		this.setState({customerName : event.target.customerName });
-// 	}
-// 	handleSubmit(event) {
-// 		event.preventDefault();
-// 	}
-// 	render() {
-// 		return (
-// 				<div className="col-md-6">
-// 					<p className="main-text main-text_bold">
-// 						Пожалуйста, заполните форму
-// 					</p>
-// 					<form className="checkout__form" onSubmit={this.handleSubmit}>
-// 						<input type="input" className="checkout__form__input" placeholder="Ваше имя" value={this.state.customerName} onChange={this.handleInput} />
-						
-// 						<div className="checkout__checkout-button-container">
-// 							<button className="checkout__checkout-button">Оформить заказ</button>
-// 						</div>
-// 					</form>
-// 				</div>	
-// 		);
-// 	}
-// }

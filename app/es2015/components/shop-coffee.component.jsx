@@ -42,6 +42,7 @@ export default class ShopCoffee extends React.Component {
 	render() {
 		var itemsArr = [];
 		var itemsRow = [];
+		var imgPath = "img/coffee/"
 
 		//console.log("this.state.shopItems ===", this.state.shopItems);
 		for (let i=0; i < this.state.shopItems.length; i++) {
@@ -64,7 +65,7 @@ export default class ShopCoffee extends React.Component {
 									</div>	
 									<div className="row">												
 										<div className="shop-coffee__item__image">
-											<img className="shop-coffee__item__image__img" src="img/template-img__coffee-shop.jpg" />
+											<img className="shop-coffee__item__image__img" src={imgPath + item.image} />
 										</div>
 									</div>
 									<div className="row">

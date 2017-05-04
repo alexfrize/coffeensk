@@ -1,4 +1,5 @@
 import React from "react";
+import CheckoutForm from "./checkout-form.component.jsx"
 
 export default class Checkout extends React.Component {
 	constructor(props) {
@@ -32,20 +33,7 @@ export default class Checkout extends React.Component {
 								{this.state.itemsInCart.length ? this.state.itemsInCart.map((item, i) => <li key={i}>{item.title}</li>) : <li>В корзине нет заказов</li>}
 							</ul>
 						</div>
-						<div className="col-md-6">
-							<p className="main-text main-text_bold">
-								Пожалуйста, заполните форму
-							</p>
-							<form className="checkout__form">
-								<input type="input" className="checkout__form__input" placeholder="Ваше имя" />
-								<input type="input" className="checkout__form__input" placeholder="Телефон" />
-								<input type="input" className="checkout__form__input" placeholder="Адрес" />
-								<div className="checkout__checkout-button-container">
-									<button className="checkout__checkout-button">Оформить заказ</button>
-								</div>
-							</form>
-
-						</div>												
+						<CheckoutForm itemsInCart={this.state.itemsInCart} />										
 					</div>
 				</div>
 			</section>	

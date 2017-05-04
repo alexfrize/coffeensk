@@ -1,38 +1,45 @@
 [
 	{
+		"title" : "Alta Roma Arabica",
+		"description" : "Арабика-100%",
 		"weight" : "1 кг",
-		"price" : "920",
+		"price" : "1000",
+		"description" : "Арабика-100%",
+		"image" : "coffee_alta_roma_arabica.jpg"
+	},
+	{
+		"title" : "Alta Roma Crema",
+		"description" : "Робуста-70%, Арабика-30%",
+		"weight" : "1 кг",
+		"price" : "850",
+		"image" : "coffee_alta_roma_crema.jpg"
+	},
+	{
 		"title" : "Alta Roma Espresso",
-		"description" : "Арабика-70%, Робуста-30%"
+		"description" : "Арабика-70%, Робуста-30%",
+		"weight" : "1 кг",
+		"price" : "950",
+		"image" : "coffee_alta_roma_espresso.jpg"
 	},
 	{
+		"title" : "Alta Roma Oro",
+		"description" : "Арабика-100%",
 		"weight" : "1 кг",
-		"price" : "250",
-		"title" : "E56 spresso Alta Roma 4443",
-		"description" : "Караблика, Арабика-70%, Робуста-30%"
+		"price" : "1750",
+		"image" : "coffee_alta_roma_oro.jpg"
 	},
 	{
+		"title" : "Alta Roma Platino",
+		"description" : "Арабика-90%, Робуста-10%",
 		"weight" : "1 кг",
-		"price" : "450",
-		"title" : "458 Cappuccino Roma ",
-		"description" : "Робуста-30%, Арабика-70%, Сливки"
+		"price" : "1650",
+		"image" : "coffee_alta_roma_platino.jpg"
 	},
 	{
+		"title" : "Alta Roma Verde",
+		"description" : "Арабика-100%",
 		"weight" : "1 кг",
-		"price" : "750",
-		"title" : "565568 46 Espresso Alta Roma ",
-		"description" : "Арабика-70%, Робуста-30%"
-	},
-	{
-		"weight" : "1 кг",
-		"price" : "1250",
-		"title" : "Coffee 46 Espresso Alta Roma ",
-		"description" : "Блалабика, Арабика-70%, Робуста-30%"
-	},
-	{
-		"weight" : "1 кг",
-		"price" : "550",
-		"title" : "E654 spresso Coffee Alta Roma ",
-		"description" : "Манабика - 5%, Арабика-70%, Капуста -1%, Робуста-24%"
+		"price" : "1200",
+		"image" : "coffee_alta_roma_verde.jpg"
 	}												
 ]

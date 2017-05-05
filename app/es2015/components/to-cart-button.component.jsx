@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 export default class ToCartButton extends React.Component {
 	constructor(props) {
@@ -6,6 +7,7 @@ export default class ToCartButton extends React.Component {
 	}
 	render() {
 		return (
+			<Link to="/cart">
 			<section className="to-cart-button">
 				<div className="to-cart-button__text-container">
 					<p className="to-cart-button__text-container__text">
@@ -13,6 +15,7 @@ export default class ToCartButton extends React.Component {
 					</p>
 				</div>
 			</section>
+			</Link>
 		);
 	}
 }

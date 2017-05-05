@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class Cart extends React.Component {
 	constructor(props) {
@@ -20,11 +21,9 @@ export default class Cart extends React.Component {
     	this.setState({itemsInCart : itemsLeft});
     }
 
-	test() {
-		console.log('Next >>');
-	}
 	render() {
 		console.log("Cart /");
+		var imgPath = "img/coffee/"
 		var itemsInTable;
 
 		var itemsInCart = this.state.itemsInCart;
@@ -43,7 +42,7 @@ export default class Cart extends React.Component {
 								return (
 									<tr key={i}>
 										<td>{item.title}</td>
-										<td><img src="img/template-img__coffee-shop_cart.jpg" /></td>
+										<td><img src={imgPath + item.image} /></td>
 										<td>1 шт.</td>
 										<td>{item.price} руб.</td>
 										<td><button className="cart__table__delete-button" onClick={this.deleteItemFromCart.bind(this, i)}><i className="fa fa-times"></i></button></td>
@@ -80,7 +79,7 @@ export default class Cart extends React.Component {
 								</tbody>
 							</table>
 							<div className="cart__next-button-container">
-								<button className="cart__next-button" onClick={this.test}>Далее >></button>
+								<Link to="/checkout"><button className="cart__next-button">Далее >></button></Link>
 							</div>
 						</div>				
 					</div>

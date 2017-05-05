@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export default class Header extends React.Component {
 	render() {
 		return (
@@ -40,11 +40,11 @@ export default class Header extends React.Component {
 							    </div>
 							    <div className="header__menu__list collapse navbar-collapse">
 									<ul className="nav nav-pills nav-justified">
-										<li><a href="#">Ремонт и обслуживание</a></li>
+										<li><Link to="/repair">Ремонт и обслуживание</Link></li>
 										<li><a href="#">Расходные материалы</a></li>
-										<li><a href="#">Аренда кофемашины</a></li>
-										<li><a href="#">Кофе</a></li>
-										<li><a href="#">Контакты</a></li>
+										<li><Link to="/rent">Аренда кофемашины</Link></li>
+										<li><Link to="/shopcoffee">Кофе</Link></li>
+										<li><Link to="/contacts">Контакты</Link></li>
 									</ul>
 								</div>
 							</nav>

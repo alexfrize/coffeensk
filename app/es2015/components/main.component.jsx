@@ -9,7 +9,7 @@ import Repair from "./repair.component.jsx";
 import Contacts from "./contacts.component.jsx";
 import ToCartButton from "./to-cart-button.component.jsx";
 import { connect } from "react-redux";
-
+import { Route, Switch } from "react-router-dom";
 
 export class Main extends React.Component {
 	constructor(props) {
@@ -47,17 +47,22 @@ export class Main extends React.Component {
 		//console.log('(from render) this.props == ', this.props);
 		//console.log('dispatch==', this.props.dispatch);
 		
-
+		const ShopCoffeeRoute = (props) => (<ShopCoffee itemsInCart = {this.state.itemsInCart} addNewItemToCart = {this.addNewItemToCart} {...props} />);
+		const CartRoute = (props) => (<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart} {...props} />);
+		const CheckoutRoute = (props) => (<Checkout itemsInCart = {this.state.itemsInCart} {...props} />);
 		return (
 			<main>
 				<Header />
-				<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart}/>
-				<Checkout itemsInCart = {this.state.itemsInCart} />
+				<Switch>
+					<Route path="/rent" component={Rent} />
+					<Route path="/repair" component={Repair} />
+					<Route path="/contacts" component={Contacts} />				
+					<Route path="/shopcoffee" render={ShopCoffeeRoute} />
+					<Route path="/checkout" render={CheckoutRoute} />
+					<Route path="/cart" render={CartRoute} />
+				</Switch>
+				<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart} />);
 				<ToCartButton itemsInCart = {this.state.itemsInCart} />
-				<ShopCoffee itemsInCart = {this.state.itemsInCart} addNewItemToCart = {this.addNewItemToCart}/>
-				<Rent />
-				<Repair />
-				<Contacts />				
 				<Footer />
 			</main>
 		);

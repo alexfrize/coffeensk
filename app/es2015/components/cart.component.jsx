@@ -5,12 +5,12 @@ export default class Cart extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {itemsInCart : []};
-		//this.deleteItemFromCart = this.props.deleteItemFromCart.bind(this);
 	}
 
     componentWillReceiveProps(nextProps) {
     	if (nextProps.itemsInCart != this.state.itemsInCart) {
-    		this.setState({itemsInCart : nextProps.itemsInCart});
+    			console.log("State renew..."); 
+    			this.setState({itemsInCart : nextProps.itemsInCart});
     	}
     }
 
@@ -23,6 +23,7 @@ export default class Cart extends React.Component {
 
 	render() {
 		console.log("Cart /");
+		console.log("this.props == ",this.props);
 		var imgPath = "img/coffee/"
 		var itemsInTable;
 

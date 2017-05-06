@@ -19,7 +19,6 @@ export class Main extends React.Component {
 		this.state = {itemsInCart : []};
 	}
 	addNewItemToCart(itemsInCart) {
-		//console.log("addNewItemToCart() :: itemData == ", itemsInCart);		
 		this.props.dispatch({type : 'ADD_TO_CART',
 							 items: itemsInCart});
 		this.setState({itemsInCart : itemsInCart});
@@ -39,14 +38,10 @@ export class Main extends React.Component {
     }
 
 	getItemsInCart(itemsInCart) {
-		//console.log("getItemsInCart() :: itemData == ", itemsInCart);
 		return itemsInCart;
 	}
 
 	render() {
-		//console.log('(from render) this.props == ', this.props);
-		//console.log('dispatch==', this.props.dispatch);
-		
 		const ShopCoffeeRoute = (props) => (<ShopCoffee itemsInCart = {this.state.itemsInCart} addNewItemToCart = {this.addNewItemToCart} {...props} />);
 		const CartRoute = (props) => (<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart} {...props} />);
 		const CheckoutRoute = (props) => (<Checkout itemsInCart = {this.state.itemsInCart} {...props} />);
@@ -54,14 +49,14 @@ export class Main extends React.Component {
 			<main>
 				<Header />
 				<Switch>
+					<Route exact path="/" render={ShopCoffeeRoute} />
 					<Route path="/rent" component={Rent} />
 					<Route path="/repair" component={Repair} />
 					<Route path="/contacts" component={Contacts} />				
-					<Route path="/shopcoffee" render={ShopCoffeeRoute} />
 					<Route path="/checkout" render={CheckoutRoute} />
 					<Route path="/cart" render={CartRoute} />
 				</Switch>
-				<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart} />);
+				<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart} />
 				<ToCartButton itemsInCart = {this.state.itemsInCart} />
 				<Footer />
 			</main>

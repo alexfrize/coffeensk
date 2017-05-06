@@ -43,7 +43,7 @@ export default class Header extends React.Component {
 										<li><Link to="/repair">Ремонт и обслуживание</Link></li>
 										<li><a href="#">Расходные материалы</a></li>
 										<li><Link to="/rent">Аренда кофемашины</Link></li>
-										<li><Link to="/shopcoffee">Кофе</Link></li>
+										<li><Link to="/">Кофе</Link></li>
 										<li><Link to="/contacts">Контакты</Link></li>
 									</ul>
 								</div>

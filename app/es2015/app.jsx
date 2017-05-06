@@ -14,20 +14,13 @@ function mainAppReducer(state, action) {
 	}
 	switch (action.type) {
 		case 'ADD_TO_CART' : console.log('ADD_TO_CART');
-					console.log("action.items == ", action.items);
-					console.log("state==",state);
 					return Object.assign({}, action.items); // state уже содержит все данные об объектах в корзине, поэтому ничего не добавляем
 
 		case 'DELETE_FROM_CART' : console.log('DELETE_FROM_CART');
-					console.log("action.items == ", action.items);
-					console.log("state==",state);
 					return Object.assign({}, action.items); // state уже содержит все данные об объектах в корзине, поэтому ничего не добавляем		
 	}
 }
 const store = createStore(mainAppReducer);
-
-console.log("store.getState() == ", store.getState());
-
 var render = () => ReactDOM.render(
 							<BrowserRouter>
 								<Provider store={store}>
@@ -37,6 +30,4 @@ var render = () => ReactDOM.render(
 						, app);
 store.subscribe(render);
 render();
-
-console.log("store.getState() == ", store.getState());
 

@@ -30,7 +30,6 @@ var Cart = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
 
 		_this.state = { itemsInCart: [] };
-		//this.deleteItemFromCart = this.props.deleteItemFromCart.bind(this);
 		return _this;
 	}
 
@@ -38,6 +37,7 @@ var Cart = function (_React$Component) {
 		key: "componentWillReceiveProps",
 		value: function componentWillReceiveProps(nextProps) {
 			if (nextProps.itemsInCart != this.state.itemsInCart) {
+				console.log("State renew...");
 				this.setState({ itemsInCart: nextProps.itemsInCart });
 			}
 		}
@@ -57,6 +57,7 @@ var Cart = function (_React$Component) {
 			var _this2 = this;
 
 			console.log("Cart /");
+			console.log("this.props == ", this.props);
 			var imgPath = "img/coffee/";
 			var itemsInTable;
 
@@ -935,7 +936,7 @@ var Header = function (_React$Component) {
 										null,
 										_react2.default.createElement(
 											_reactRouterDom.Link,
-											{ to: "/shopcoffee" },
+											{ to: "/" },
 											"\u041A\u043E\u0444\u0435"
 										)
 									),
@@ -1062,7 +1063,6 @@ var Main = exports.Main = function (_React$Component) {
 	_createClass(Main, [{
 		key: "addNewItemToCart",
 		value: function addNewItemToCart(itemsInCart) {
-			//console.log("addNewItemToCart() :: itemData == ", itemsInCart);		
 			this.props.dispatch({ type: 'ADD_TO_CART',
 				items: itemsInCart });
 			this.setState({ itemsInCart: itemsInCart });
@@ -1085,16 +1085,12 @@ var Main = exports.Main = function (_React$Component) {
 	}, {
 		key: "getItemsInCart",
 		value: function getItemsInCart(itemsInCart) {
-			//console.log("getItemsInCart() :: itemData == ", itemsInCart);
 			return itemsInCart;
 		}
 	}, {
 		key: "render",
 		value: function render() {
 			var _this2 = this;
-
-			//console.log('(from render) this.props == ', this.props);
-			//console.log('dispatch==', this.props.dispatch);
 
 			var ShopCoffeeRoute = function ShopCoffeeRoute(props) {
 				return _react2.default.createElement(_shopCoffeeComponent2.default, _extends({ itemsInCart: _this2.state.itemsInCart, addNewItemToCart: _this2.addNewItemToCart }, props));
@@ -1112,15 +1108,14 @@ var Main = exports.Main = function (_React$Component) {
 				_react2.default.createElement(
 					_reactRouterDom.Switch,
 					null,
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", render: ShopCoffeeRoute }),
 					_react2.default.createElement(_reactRouterDom.Route, { path: "/rent", component: _rentComponent2.default }),
 					_react2.default.createElement(_reactRouterDom.Route, { path: "/repair", component: _repairComponent2.default }),
 					_react2.default.createElement(_reactRouterDom.Route, { path: "/contacts", component: _contactsComponent2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { path: "/shopcoffee", render: ShopCoffeeRoute }),
 					_react2.default.createElement(_reactRouterDom.Route, { path: "/checkout", render: CheckoutRoute }),
 					_react2.default.createElement(_reactRouterDom.Route, { path: "/cart", render: CartRoute })
 				),
 				_react2.default.createElement(_cartComponent2.default, { itemsInCart: this.state.itemsInCart, deleteItemFromCart: this.deleteItemFromCart }),
-				");",
 				_react2.default.createElement(_toCartButtonComponent2.default, { itemsInCart: this.state.itemsInCart }),
 				_react2.default.createElement(_footerComponent2.default, null)
 			);
@@ -28005,21 +28000,14 @@ function mainAppReducer(state, action) {
 	switch (action.type) {
 		case 'ADD_TO_CART':
 			console.log('ADD_TO_CART');
-			console.log("action.items == ", action.items);
-			console.log("state==", state);
 			return Object.assign({}, action.items); // state уже содержит все данные об объектах в корзине, поэтому ничего не добавляем
 
 		case 'DELETE_FROM_CART':
 			console.log('DELETE_FROM_CART');
-			console.log("action.items == ", action.items);
-			console.log("state==", state);
 			return Object.assign({}, action.items); // state уже содержит все данные об объектах в корзине, поэтому ничего не добавляем		
 	}
 }
 var store = (0, _redux.createStore)(mainAppReducer);
-
-console.log("store.getState() == ", store.getState());
-
 var render = function render() {
 	return _reactDom2.default.render(_react2.default.createElement(
 		_reactRouterDom.BrowserRouter,
@@ -28033,7 +28021,5 @@ var render = function render() {
 };
 store.subscribe(render);
 render();
-
-console.log("store.getState() == ", store.getState());
 
 },{"./components/main.component.jsx":7,"react":254,"react-dom":54,"react-redux":189,"react-router-dom":216,"redux":260}]},{},[278]);

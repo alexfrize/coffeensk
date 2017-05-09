@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { RouteTransition } from 'react-router-transition';
 
 export default class Cart extends React.Component {
 	constructor(props) {
@@ -7,12 +8,12 @@ export default class Cart extends React.Component {
 		this.state = {itemsInCart : []};
 	}
 
-    componentWillReceiveProps(nextProps) {
-    	if (nextProps.itemsInCart != this.state.itemsInCart) {
-    			console.log("State renew..."); 
-    			this.setState({itemsInCart : nextProps.itemsInCart});
-    	}
-    }
+    // componentWillReceiveProps(nextProps) {
+    // 	if (nextProps.itemsInCart != this.state.itemsInCart) {
+    // 			console.log(" componentWillReceiveProps(nextProps) - State renew..."); 
+    // 			this.setState({itemsInCart : nextProps.itemsInCart});
+    // 	}
+    // }
 
     deleteItemFromCart(i) {
     	var itemsLeft = this.state.itemsInCart.filter((x,ind) => ind != i);
@@ -21,7 +22,16 @@ export default class Cart extends React.Component {
     	this.setState({itemsInCart : itemsLeft});
     }
 
+    componentDidMount() {
+		console.log('cart.component.jsx - componentDidMount()', this.props);
+		if (this.state.itemsInCart != this.props.itemsInCart) {
+			this.setState({itemsInCart : this.props.itemsInCart});
+		}
+	}
+
 	render() {
+
+
 		console.log("Cart /");
 		console.log("this.props == ",this.props);
 		var imgPath = "img/coffee/"
@@ -52,39 +62,48 @@ export default class Cart extends React.Component {
 		}
 
 		return (
+
 			<section className="cart">
-				<div className="container">
-					<div className="row">
-						<div className="cart__title-container">
-							<h2 className="cart__title-container__title">
-								Ваша корзина
-							</h2>
+				<RouteTransition
+					pathname={this.props.location.pathname}
+					atEnter={{ translateY: 100 }}
+					atLeave={{ translateY: -100 }}
+					atActive={{ translateY: 0 }}
+					mapStyles={styles => ({ transform: `translateY(${styles.translateY}%)` })}> {this.props.children}
+			  
+					<div className="container">
+						<div className="row">
+							<div className="cart__title-container">
+								<h2 className="cart__title-container__title">
+									Ваша корзина
+								</h2>
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-md-12">
+								<table className="cart__table">
+
+									<tbody>
+										<tr>
+											<th colSpan="5">Список товаров</th>
+										</tr>							
+										{itemsInTable}	
+										<tr>
+											<td></td>
+											<td></td>
+											<td>Итого:</td>
+											<td>{totalPrice} руб.</td>
+											<td></td>
+										</tr>																	
+									</tbody>
+								</table>
+								<div className="cart__next-button-container">
+									<Link to="/checkout"><button className="cart__next-button">Далее >></button></Link>
+								</div>
+							</div>				
 						</div>
 					</div>
-					<div className="row">
-						<div className="col-md-12">
-							<table className="cart__table">
-
-								<tbody>
-									<tr>
-										<th colSpan="5">Список товаров</th>
-									</tr>							
-									{itemsInTable}	
-									<tr>
-										<td></td>
-										<td></td>
-										<td>Итого:</td>
-										<td>{totalPrice} руб.</td>
-										<td></td>
-									</tr>																	
-								</tbody>
-							</table>
-							<div className="cart__next-button-container">
-								<Link to="/checkout"><button className="cart__next-button">Далее >></button></Link>
-							</div>
-						</div>				
-					</div>
-				</div>
+				</RouteTransition>
 			</section>
 		);
 	}

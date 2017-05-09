@@ -48,15 +48,14 @@ export class Main extends React.Component {
 		return (
 			<main>
 				<Header />
-				<Switch>
+				<div>
 					<Route exact path="/" render={ShopCoffeeRoute} />
 					<Route path="/rent" component={Rent} />
 					<Route path="/repair" component={Repair} />
 					<Route path="/contacts" component={Contacts} />				
 					<Route path="/checkout" render={CheckoutRoute} />
 					<Route path="/cart" render={CartRoute} />
-				</Switch>
-				<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart} />
+				</div>
 				<ToCartButton itemsInCart = {this.state.itemsInCart} />
 				<Footer />
 			</main>

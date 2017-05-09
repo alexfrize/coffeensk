@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class Footer extends React.Component {
 	render() {
@@ -7,27 +8,33 @@ export default class Footer extends React.Component {
 				<section className="footer__piclinks">
 					<div className="container">
 						<div className="row">
-							<div className="footer__piclinks__item">
-								<a className="footer__piclinks__item__inner footer__piclinks__item__inner__service"  href="#">
-									<p className="footer__piclinks__item__inner__text">
-										Ремонт и обслуживание
-									</p>
-								</a>
-							</div>
-							<div className="footer__piclinks__item">
-								<a className="footer__piclinks__item__inner footer__piclinks__item__inner__rent" href="#">
-									<p className="footer__piclinks__item__inner__text">
-										Аренда кофемашин
-									</p>						
-								</a>
-							</div>									
-							<div className="footer__piclinks__item">
-								<a className="footer__piclinks__item__inner footer__piclinks__item__inner__coffee" href="#">
-									<p className="footer__piclinks__item__inner__text">
-										Продажа кофе
-									</p>						
-								</a>
-							</div>				
+							<Link to="/repair">
+								<div className="footer__piclinks__item">
+									<div className="footer__piclinks__item__inner footer__piclinks__item__inner__service">
+										<p className="footer__piclinks__item__inner__text">
+											Ремонт и обслуживание
+										</p>
+									</div>
+								</div>
+							</Link>
+							<Link to="/rent">
+								<div className="footer__piclinks__item">
+									<div className="footer__piclinks__item__inner footer__piclinks__item__inner__rent">
+										<p className="footer__piclinks__item__inner__text">
+											Аренда кофемашин
+										</p>						
+									</div>
+								</div>
+							</Link>
+							<Link to="/">
+								<div className="footer__piclinks__item">
+									<div className="footer__piclinks__item__inner footer__piclinks__item__inner__coffee">
+										<p className="footer__piclinks__item__inner__text">
+											Продажа кофе
+										</p>						
+									</div>
+								</div>		
+							</Link>		
 						</div>
 					</div>
 				</section>		
@@ -39,12 +46,12 @@ export default class Footer extends React.Component {
 								<div className="row">
 									<nav className="footer__menu-and-contacts__inner__menu">
 										<ul>
-											<li><a href="#">О компании</a></li>
-											<li><a href="#">Ремонт и обслуживание</a></li>
-											<li><a href="#">Аренда кофемашин</a></li>
-											<li><a href="#">Запчасти для кофемашин</a></li>
-											<li><a href="#">Продажа кофе</a></li>
-											<li><a href="#">Наши контакты</a></li>
+											<li><Link to="/about">О компании</Link></li>
+											<li><Link to="/repair">Ремонт и обслуживание</Link></li>
+											<li><Link to="/rent">Аренда кофемашин</Link></li>
+											<li><Link to="/sub?">Запчасти для кофемашин</Link></li>
+											<li><Link to="/">Продажа кофе</Link></li>
+											<li><Link to="/contacts">Наши контакты</Link></li>
 										</ul>
 									</nav>
 									<div className="footer__menu-and-contacts__inner__schedule">

@@ -1,4 +1,5 @@
 import React from "react";
+import { RouteTransition } from 'react-router-transition';
 
 export default class ShopCoffee extends React.Component {
 	constructor(props) {
@@ -21,11 +22,12 @@ export default class ShopCoffee extends React.Component {
 		this.props.addNewItemToCart(newStateArray);
 	}
 
-    componentWillReceiveProps(nextProps) {
-    	if (nextProps.itemsInCart != this.state.itemsInCart) {
-    		this.setState({itemsInCart : nextProps.itemsInCart});
-    	}
-    }
+    componentDidMount() {
+		console.log('shop-coffee.component.jsx  - componentDidMount() props values', this.props); //it will print the props values
+		if (this.state.itemsInCart != this.props.itemsInCart) {
+			this.setState({itemsInCart : this.props.itemsInCart});
+		}
+	}
 
 	getData() {
 		const url="/data/coffee.json";
@@ -101,20 +103,23 @@ export default class ShopCoffee extends React.Component {
 		}
 		return (
 				<section className="shop-coffee">
-					<div className="container">
-						<div className="row">
-							<div className="shop-coffee__title-container">
-								<h2 className="shop-coffee__title-container__title">
-									Магазин кофе
-								</h2>
+					<RouteTransition
+						pathname={this.props.location.pathname}
+						atEnter={{ translateY: 100 }}
+						atLeave={{ translateY: -100 }}
+						atActive={{ translateY: 0 }}
+						mapStyles={styles => ({ transform: `translateY(${styles.translateY}%)` })}> {this.props.children}
+						<div className="container">
+							<div className="row">
+								<div className="shop-coffee__title-container">
+									<h2 className="shop-coffee__title-container__title">
+										Магазин кофе
+									</h2>
+								</div>
 							</div>
+								{itemsRow}
 						</div>
-
-				
-							{itemsRow}
-
-						
-					</div>
+					</RouteTransition>
 				</section>
 		);
 	}

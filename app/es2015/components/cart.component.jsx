@@ -8,13 +8,6 @@ export default class Cart extends React.Component {
 		this.state = {itemsInCart : []};
 	}
 
-    // componentWillReceiveProps(nextProps) {
-    // 	if (nextProps.itemsInCart != this.state.itemsInCart) {
-    // 			console.log(" componentWillReceiveProps(nextProps) - State renew..."); 
-    // 			this.setState({itemsInCart : nextProps.itemsInCart});
-    // 	}
-    // }
-
     deleteItemFromCart(i) {
     	var itemsLeft = this.state.itemsInCart.filter((x,ind) => ind != i);
     	this.props.deleteItemFromCart(i);
@@ -30,7 +23,6 @@ export default class Cart extends React.Component {
 	}
 
 	render() {
-
 
 		console.log("Cart /");
 		console.log("this.props == ",this.props);

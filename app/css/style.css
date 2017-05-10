@@ -8566,7 +8566,8 @@ p {
       padding: 30px; }
     .shop-coffee .shop-coffee__item .shop-coffee__item__inner .shop-coffee__item__description {
       padding: 10px 20px;
-      background: #491404; }
+      background: #491404;
+      min-height: 95px; }
       .shop-coffee .shop-coffee__item .shop-coffee__item__inner .shop-coffee__item__description .shop-coffee__item__description__text {
         color: white;
         margin-bottom: 0;

@@ -203,6 +203,7 @@
 			.shop-coffee__item__description {
 				padding: 10px 20px;
 				background: $brown;
+				min-height: 95px;
 
 				.shop-coffee__item__description__text {
 					@extend .text-center;

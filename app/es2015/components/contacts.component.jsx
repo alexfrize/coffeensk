@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { RouteTransition } from 'react-router-transition';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import _ from "lodash";
@@ -361,7 +362,7 @@ export default class Contacts extends React.Component {
 									e-mail: info@coffeensk.com
 								</p>
 								<div className="main-button-container">
-									<button className="main-button">Оставить заявку</button>
+									<Link to="/sendmessage"><button className="main-button">Оставить заявку</button></Link>
 								</div>						
 							</div>
 

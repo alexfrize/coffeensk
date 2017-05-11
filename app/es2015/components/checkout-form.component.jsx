@@ -42,10 +42,10 @@ export default class CheckoutForm extends React.Component {
 					<p className="main-text main-text_bold">
 						Пожалуйста, заполните форму
 					</p>
-					<form className="checkout__form" onSubmit={this.handleSubmit}>
-						<input type="input" className="checkout__form__input" placeholder="Ваше имя" value={this.state.customerName} onChange={this.handleNameChange} />
-						<input type="input" className="checkout__form__input" placeholder="Телефон" value={this.state.customerTel} onChange={this.handleTelChange} />
-						<input type="input" className="checkout__form__input" placeholder="Адрес" value={this.state.customerAddr} onChange={this.handleAddrChange} />
+					<form className="checkout__form" action="/php/send-order.php" method="POST">
+						<input type="input" className="checkout__form__input" name="customerName" placeholder="Ваше имя" value={this.state.customerName} onChange={this.handleNameChange} />
+						<input type="input" className="checkout__form__input" name="customerTel" placeholder="Телефон" value={this.state.customerTel} onChange={this.handleTelChange} />
+						<input type="input" className="checkout__form__input" name="customerAddr" placeholder="Адрес" value={this.state.customerAddr} onChange={this.handleAddrChange} />
 						<div className="checkout__checkout-button-container">
 							<button className="checkout__checkout-button">Оформить заказ</button>
 						</div>

@@ -7,7 +7,7 @@ export default class Header extends React.Component {
 					<div className="container">
 						<div className="row">
 							<div className="header__logo col-md-3">
-								<img src="img/logo.png" className="header__logo__img" />
+								<Link to="/"><img src="img/logo.png" className="header__logo__img" /></Link>
 							</div>
 							<div className="header__title col-md-6">
 								<h1 className="header__title__h1">
@@ -40,10 +40,10 @@ export default class Header extends React.Component {
 							    </div>
 							    <div className="header__menu__list collapse navbar-collapse">
 									<ul className="nav nav-pills nav-justified">
-										<li><Link to="/repair">Ремонт и обслуживание</Link></li>
-										<li><a href="#">Расходные материалы</a></li>
-										<li><Link to="/rent">Аренда кофемашины</Link></li>
 										<li><Link to="/">Кофе</Link></li>
+										<li><Link to="/repair">Ремонт и обслуживание</Link></li>
+										<li><Link to="/сonsumables">Расходные материалы</Link></li>
+										<li><Link to="/rent">Аренда кофемашины</Link></li>
 										<li><Link to="/contacts">Контакты</Link></li>
 									</ul>
 								</div>

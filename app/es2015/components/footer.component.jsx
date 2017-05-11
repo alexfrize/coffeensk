@@ -46,10 +46,9 @@ export default class Footer extends React.Component {
 								<div className="row">
 									<nav className="footer__menu-and-contacts__inner__menu">
 										<ul>
-											<li><Link to="/about">О компании</Link></li>
 											<li><Link to="/repair">Ремонт и обслуживание</Link></li>
 											<li><Link to="/rent">Аренда кофемашин</Link></li>
-											<li><Link to="/sub?">Запчасти для кофемашин</Link></li>
+											<li><Link to="/сonsumables">Запчасти для кофемашин</Link></li>
 											<li><Link to="/">Продажа кофе</Link></li>
 											<li><Link to="/contacts">Наши контакты</Link></li>
 										</ul>

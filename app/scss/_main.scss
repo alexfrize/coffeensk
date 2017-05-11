@@ -149,6 +149,59 @@
 	}
 }
 
+
+ /* ============= Отправка сообщения (компонента SendMessage) ============= */
+.send-message {
+	.send-message__title-container {
+		.send-message__title-container__title {
+			@extend .h2;
+		}
+	}
+
+	.send-message__send-message-button-container {
+		margin-top: 30px;
+		text-align: right;
+		.send-message__send-message-button {
+			@extend .main-button;
+		}
+	}	
+
+	.send-message__form {
+		.send-message__form__input, .send-message__form__textarea {
+			@extend .form-control;
+			@extend %transition;
+			border-radius: 0;
+			border: 1px solid $brown;
+			margin-bottom: 10px;
+			background: transparent;
+			padding: 20px 10px;
+			width: 100%;
+			font: {
+				family: $opensans;
+				size: 18px;
+				weight: $regular;
+			}
+			color: $brown;
+
+			&::placeholder {
+				@extend %transition;
+				color: darken($lbrown,30%);
+			}
+			&:focus {
+				border-color: rgba(73, 20, 4, 0.8);
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(73, 20, 4, 0.2);
+				outline: 0 none;
+				&::placeholder {
+					color: darken($lbrown,10%);
+				}
+			}
+		}
+		
+	}
+}
+
+
+
  /* ============= Магазин кофе ============= */
 .shop-coffee {
 	.shop-coffee__title-container {
@@ -263,6 +316,16 @@
 		}
 	}
 }
+
+/* ============= Расходные материалы ============= */
+.consumables {
+	.consumables__title-container {
+		.consumables__title-container__title {
+			@extend .h2;
+		}
+	}	
+}
+
 
 /* ============= Страница с контактными данными и картов ============= */
 .contacts-and-map {

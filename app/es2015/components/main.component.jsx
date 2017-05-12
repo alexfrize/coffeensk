@@ -18,6 +18,7 @@ export class Main extends React.Component {
 		super(props);
 		this.addNewItemToCart = this.addNewItemToCart.bind(this);
 		this.deleteItemFromCart = this.deleteItemFromCart.bind(this);
+		this.changeQantity = this.changeQantity.bind(this);
 		this.state = {itemsInCart : []};
 	}
 	addNewItemToCart(itemsInCart) {
@@ -43,9 +44,20 @@ export class Main extends React.Component {
 		return itemsInCart;
 	}
 
+	changeQantity(i, newQantity) {
+		console.log("changeQantity...",i, newQantity);
+		var items = this.state.itemsInCart;
+		console.log("__this.state.itemsInCart;", this.state.itemsInCart);
+		items[i].quantity = newQantity;
+		this.props.dispatch({type : 'CHANGE_QUANTITY',
+							 items: items});
+		this.setState({ itemsInCart : items });
+		console.log("ok__");
+	}
+
 	render() {
 		const ShopCoffeeRoute = (props) => (<ShopCoffee itemsInCart = {this.state.itemsInCart} addNewItemToCart = {this.addNewItemToCart} {...props} />);
-		const CartRoute = (props) => (<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart} {...props} />);
+		const CartRoute = (props) => (<Cart itemsInCart = {this.state.itemsInCart} deleteItemFromCart = {this.deleteItemFromCart} changeQantity = {this.changeQantity} {...props} />);
 		const CheckoutRoute = (props) => (<Checkout itemsInCart = {this.state.itemsInCart} {...props} />);
 		return (
 			<main>

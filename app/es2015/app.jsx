@@ -19,6 +19,8 @@ function mainAppReducer(state, action) {
 
 		case 'DELETE_FROM_CART' : console.log('DELETE_FROM_CART');
 					return Object.assign({}, action.items); // state уже содержит все данные об объектах в корзине, поэтому ничего не добавляем		
+		case 'CHANGE_QUANTITY' : console.log('CHANGE_QUANTITY');
+					return Object.assign({}, action.items); // state уже содержит все данные об объектах в корзине, поэтому ничего не добавляем
 	}
 }
 const store = createStore(mainAppReducer);

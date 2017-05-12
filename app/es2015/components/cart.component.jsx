@@ -6,6 +6,8 @@ export default class Cart extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {itemsInCart : []};
+		//this.handleInput = this.handleInput.bind(this);
+		this.increaseQuantity = this.increaseQuantity.bind(this);
 	}
 
     deleteItemFromCart(i) {
@@ -22,6 +24,23 @@ export default class Cart extends React.Component {
 		}
 	}
 
+	handleInput(i, event) {
+		console.log(event.target.value);
+		console.log("counet", i);
+		this.props.changeQantity(i, event.target.value);
+	}
+	increaseQuantity(i, event) {
+		console.log("this.state.itemsInCart[i]", this.state.itemsInCart[i]);
+		var newQuantity = +this.state.itemsInCart[i].quantity + 1;
+		this.props.changeQantity(i, newQuantity);
+	}
+
+	decreaseQuantity(i, event) {
+		console.log("this.state.itemsInCart[i]", this.state.itemsInCart[i]);
+		var newQuantity = +this.state.itemsInCart[i].quantity - 1;
+		if (newQuantity <= 0) newQuantity = 1;
+		this.props.changeQantity(i, newQuantity);
+	}	
 	render() {
 
 		console.log("Cart /");
@@ -46,7 +65,11 @@ export default class Cart extends React.Component {
 									<tr key={i}>
 										<td>{item.title}</td>
 										<td><img src={imgPath + item.image} /></td>
-										<td>1 шт.</td>
+										<td>
+											<input onChange={this.handleInput.bind(this, i)} className="cart__table__input" type="number" value={this.state.itemsInCart[i].quantity} />
+											<button className="cart__table__button-add" onClick={this.increaseQuantity.bind(this, i)}>+</button>
+											<button className="cart__table__button-sub" onClick={this.decreaseQuantity.bind(this, i)}>-</button>
+										</td>
 										<td>{item.price} руб.</td>
 										<td><button className="cart__table__delete-button" onClick={this.deleteItemFromCart.bind(this, i)}><i className="fa fa-times"></i></button></td>
 									</tr>);

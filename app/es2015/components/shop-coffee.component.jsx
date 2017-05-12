@@ -13,11 +13,14 @@ export default class ShopCoffee extends React.Component {
 // =============== Добавляет выбранный товар в корзину ===============
 	addItemToCart(i) {
 		let newSelectedItem = this.state.shopItems[i];
+
 		let newStateArray = this.state.itemsInCart;
 		// Проверяем, есть ли уже такой товар в корзине
 		if (newStateArray.filter( el => el == newSelectedItem).length == 0) {
+			newSelectedItem.quantity = 1;
 			newStateArray.push(newSelectedItem);
-		}
+		} 
+		
 		this.setState({itemsInCart : newStateArray});
 		this.props.addNewItemToCart(newStateArray);
 	}

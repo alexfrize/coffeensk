@@ -32,6 +32,8 @@ var Cart = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
 
 		_this.state = { itemsInCart: [] };
+		//this.handleInput = this.handleInput.bind(this);
+		_this.increaseQuantity = _this.increaseQuantity.bind(_this);
 		return _this;
 	}
 
@@ -52,6 +54,28 @@ var Cart = function (_React$Component) {
 			if (this.state.itemsInCart != this.props.itemsInCart) {
 				this.setState({ itemsInCart: this.props.itemsInCart });
 			}
+		}
+	}, {
+		key: "handleInput",
+		value: function handleInput(i, event) {
+			console.log(event.target.value);
+			console.log("counet", i);
+			this.props.changeQantity(i, event.target.value);
+		}
+	}, {
+		key: "increaseQuantity",
+		value: function increaseQuantity(i, event) {
+			console.log("this.state.itemsInCart[i]", this.state.itemsInCart[i]);
+			var newQuantity = +this.state.itemsInCart[i].quantity + 1;
+			this.props.changeQantity(i, newQuantity);
+		}
+	}, {
+		key: "decreaseQuantity",
+		value: function decreaseQuantity(i, event) {
+			console.log("this.state.itemsInCart[i]", this.state.itemsInCart[i]);
+			var newQuantity = +this.state.itemsInCart[i].quantity - 1;
+			if (newQuantity <= 0) newQuantity = 1;
+			this.props.changeQantity(i, newQuantity);
 		}
 	}, {
 		key: "render",
@@ -97,7 +121,17 @@ var Cart = function (_React$Component) {
 						_react2.default.createElement(
 							"td",
 							null,
-							"1 \u0448\u0442."
+							_react2.default.createElement("input", { onChange: _this2.handleInput.bind(_this2, i), className: "cart__table__input", type: "number", value: _this2.state.itemsInCart[i].quantity }),
+							_react2.default.createElement(
+								"button",
+								{ className: "cart__table__button-add", onClick: _this2.increaseQuantity.bind(_this2, i) },
+								"+"
+							),
+							_react2.default.createElement(
+								"button",
+								{ className: "cart__table__button-sub", onClick: _this2.decreaseQuantity.bind(_this2, i) },
+								"-"
+							)
 						),
 						_react2.default.createElement(
 							"td",
@@ -1369,6 +1403,7 @@ var Main = exports.Main = function (_React$Component) {
 
 		_this.addNewItemToCart = _this.addNewItemToCart.bind(_this);
 		_this.deleteItemFromCart = _this.deleteItemFromCart.bind(_this);
+		_this.changeQantity = _this.changeQantity.bind(_this);
 		_this.state = { itemsInCart: [] };
 		return _this;
 	}
@@ -1401,6 +1436,18 @@ var Main = exports.Main = function (_React$Component) {
 			return itemsInCart;
 		}
 	}, {
+		key: "changeQantity",
+		value: function changeQantity(i, newQantity) {
+			console.log("changeQantity...", i, newQantity);
+			var items = this.state.itemsInCart;
+			console.log("__this.state.itemsInCart;", this.state.itemsInCart);
+			items[i].quantity = newQantity;
+			this.props.dispatch({ type: 'CHANGE_QUANTITY',
+				items: items });
+			this.setState({ itemsInCart: items });
+			console.log("ok__");
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var _this2 = this;
@@ -1409,7 +1456,7 @@ var Main = exports.Main = function (_React$Component) {
 				return _react2.default.createElement(_shopCoffeeComponent2.default, _extends({ itemsInCart: _this2.state.itemsInCart, addNewItemToCart: _this2.addNewItemToCart }, props));
 			};
 			var CartRoute = function CartRoute(props) {
-				return _react2.default.createElement(_cartComponent2.default, _extends({ itemsInCart: _this2.state.itemsInCart, deleteItemFromCart: _this2.deleteItemFromCart }, props));
+				return _react2.default.createElement(_cartComponent2.default, _extends({ itemsInCart: _this2.state.itemsInCart, deleteItemFromCart: _this2.deleteItemFromCart, changeQantity: _this2.changeQantity }, props));
 			};
 			var CheckoutRoute = function CheckoutRoute(props) {
 				return _react2.default.createElement(_checkoutComponent2.default, _extends({ itemsInCart: _this2.state.itemsInCart }, props));
@@ -2196,13 +2243,16 @@ var ShopCoffee = function (_React$Component) {
 		key: "addItemToCart",
 		value: function addItemToCart(i) {
 			var newSelectedItem = this.state.shopItems[i];
+
 			var newStateArray = this.state.itemsInCart;
 			// Проверяем, есть ли уже такой товар в корзине
 			if (newStateArray.filter(function (el) {
 				return el == newSelectedItem;
 			}).length == 0) {
+				newSelectedItem.quantity = 1;
 				newStateArray.push(newSelectedItem);
 			}
+
 			this.setState({ itemsInCart: newStateArray });
 			this.props.addNewItemToCart(newStateArray);
 		}
@@ -52717,6 +52767,9 @@ function mainAppReducer(state, action) {
 		case 'DELETE_FROM_CART':
 			console.log('DELETE_FROM_CART');
 			return Object.assign({}, action.items); // state уже содержит все данные об объектах в корзине, поэтому ничего не добавляем		
+		case 'CHANGE_QUANTITY':
+			console.log('CHANGE_QUANTITY');
+			return Object.assign({}, action.items); // state уже содержит все данные об объектах в корзине, поэтому ничего не добавляем
 	}
 }
 var store = (0, _redux.createStore)(mainAppReducer);

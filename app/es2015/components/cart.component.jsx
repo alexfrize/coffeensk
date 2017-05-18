@@ -6,7 +6,7 @@ export default class Cart extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {itemsInCart : []};
-		//this.handleInput = this.handleInput.bind(this);
+		this.canCheckout = false;
 		this.increaseQuantity = this.increaseQuantity.bind(this);
 	}
 
@@ -52,14 +52,17 @@ export default class Cart extends React.Component {
 		var totalPrice = 0;
 
 		if (!itemsInCart.length) {
+			this.canCheckout = false;
 			itemsInTable = 	(<tr>
 								<td colSpan="5">Ваша корзина пуста</td>
 							</tr>);
 		} 
 		else {
 			totalPrice = 0;
+			this.canCheckout = true;
 			itemsInTable = (itemsInCart.map((item, i) => {
-								totalPrice += +item.price;
+								totalPrice += +item.price*item.quantity;
+
 								console.log("totalPrice==",totalPrice);
 								return (
 									<tr key={i}>
@@ -70,7 +73,7 @@ export default class Cart extends React.Component {
 											<button className="cart__table__button-add" onClick={this.increaseQuantity.bind(this, i)}>+</button>
 											<button className="cart__table__button-sub" onClick={this.decreaseQuantity.bind(this, i)}>-</button>
 										</td>
-										<td>{item.price} руб.</td>
+										<td>{item.price * this.state.itemsInCart[i].quantity} руб.</td>
 										<td><button className="cart__table__delete-button" onClick={this.deleteItemFromCart.bind(this, i)}><i className="fa fa-times"></i></button></td>
 									</tr>);
 				}));
@@ -113,7 +116,7 @@ export default class Cart extends React.Component {
 									</tbody>
 								</table>
 								<div className="cart__next-button-container">
-									<Link to="/checkout"><button className="cart__next-button">Далее >></button></Link>
+									<Link to="/checkout"><button disabled={!this.canCheckout} className="cart__next-button">Далее >></button></Link>
 								</div>
 							</div>				
 						</div>

@@ -39,7 +39,7 @@ export default class Checkout extends React.Component {
 									Детали заказа:
 								</p>
 								<ul className="main-text">
-									{this.state.itemsInCart.length ? this.state.itemsInCart.map((item, i) => <li key={i}>{item.title}</li>) : <li>В корзине нет заказов</li>}
+									{this.state.itemsInCart.length ? this.state.itemsInCart.map((item, i) => <li key={i}>{item.title} - {item.quantity} шт.</li>) : <li>В корзине нет заказов</li>}
 								</ul>
 							</div>
 							<CheckoutForm itemsInCart={this.state.itemsInCart} />										

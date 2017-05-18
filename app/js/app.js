@@ -32,7 +32,7 @@ var Cart = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
 
 		_this.state = { itemsInCart: [] };
-		//this.handleInput = this.handleInput.bind(this);
+		_this.canCheckout = false;
 		_this.increaseQuantity = _this.increaseQuantity.bind(_this);
 		return _this;
 	}
@@ -91,6 +91,7 @@ var Cart = function (_React$Component) {
 			var totalPrice = 0;
 
 			if (!itemsInCart.length) {
+				this.canCheckout = false;
 				itemsInTable = _react2.default.createElement(
 					"tr",
 					null,
@@ -102,8 +103,10 @@ var Cart = function (_React$Component) {
 				);
 			} else {
 				totalPrice = 0;
+				this.canCheckout = true;
 				itemsInTable = itemsInCart.map(function (item, i) {
-					totalPrice += +item.price;
+					totalPrice += +item.price * item.quantity;
+
 					console.log("totalPrice==", totalPrice);
 					return _react2.default.createElement(
 						"tr",
@@ -136,7 +139,7 @@ var Cart = function (_React$Component) {
 						_react2.default.createElement(
 							"td",
 							null,
-							item.price,
+							item.price * _this2.state.itemsInCart[i].quantity,
 							" \u0440\u0443\u0431."
 						),
 						_react2.default.createElement(
@@ -233,7 +236,7 @@ var Cart = function (_React$Component) {
 										{ to: "/checkout" },
 										_react2.default.createElement(
 											"button",
-											{ className: "cart__next-button" },
+											{ disabled: !this.canCheckout, className: "cart__next-button" },
 											"\u0414\u0430\u043B\u0435\u0435 >>"
 										)
 									)
@@ -289,13 +292,21 @@ var CheckoutForm = function (_React$Component) {
     _this.handleTelChange = _this.handleTelChange.bind(_this);
     _this.handleAddrChange = _this.handleAddrChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.canCheckout = false;
+
     return _this;
   }
 
   _createClass(CheckoutForm, [{
+    key: "updateCheckoutPossibility",
+    value: function updateCheckoutPossibility() {
+      this.canCheckout = this.state.customerName && this.state.customerTel.length > 9 && this.state.customerAddr.length > 10;
+    }
+  }, {
     key: "handleNameChange",
     value: function handleNameChange(event) {
       this.setState({ customerName: event.target.value });
+      if (event.target.value !== "") this.canCheckout = this.updateCheckoutPossibility();
     }
   }, {
     key: "handleTelChange",
@@ -304,15 +315,19 @@ var CheckoutForm = function (_React$Component) {
       var newState = tel.match(/^\+[0-9-]*|^[0-9]+[0-9-]*/g);
       newState = newState !== null ? newState.join('') : '';
       this.setState({ customerTel: newState });
+      this.updateCheckoutPossibility();
     }
   }, {
     key: "handleAddrChange",
     value: function handleAddrChange(event) {
       this.setState({ customerAddr: event.target.value });
+      this.updateCheckoutPossibility();
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
+      var _this2 = this;
+
       console.log(this.state.customerAddr);
       console.log(this.props.itemsInCart);
       event.preventDefault();
@@ -328,7 +343,18 @@ var CheckoutForm = function (_React$Component) {
           orderData: this.props.itemsInCart
         })
       }).then(function (response) {
-        return console.log(response);
+        console.log(response);
+        console.log(response.status);
+        if (response.status == 200 || response.status == 0) {
+          _this2.setState({
+            customerName: "",
+            customerTel: "",
+            customerAddr: ""
+          });
+          alert("Ваша заявка была отправлена. Скоро с Вами свяжутся.");
+        } else {
+          alert("При отправке данных возникла ошибка. Пожалуйста, повторите попытку чуть позже, либо свяжитесь с нами по телефону.");
+        }
       }).catch(function (error) {
         return console.error("error", error);
       });
@@ -355,7 +381,7 @@ var CheckoutForm = function (_React$Component) {
             { className: "checkout__checkout-button-container" },
             _react2.default.createElement(
               "button",
-              { className: "checkout__checkout-button", onClick: this.handleSubmit },
+              { disabled: !this.canCheckout, className: "checkout__checkout-button", onClick: this.handleSubmit },
               "\u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437"
             )
           )
@@ -469,7 +495,10 @@ var Checkout = function (_React$Component) {
 										return _react2.default.createElement(
 											"li",
 											{ key: i },
-											item.title
+											item.title,
+											" - ",
+											item.quantity,
+											" \u0448\u0442."
 										);
 									}) : _react2.default.createElement(
 										"li",

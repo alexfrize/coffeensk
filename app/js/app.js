@@ -313,10 +313,25 @@ var CheckoutForm = function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      alert('Данные были отправлены!');
-      console.log(this.state);
+      console.log(this.state.customerAddr);
       console.log(this.props.itemsInCart);
       event.preventDefault();
+      fetch('/php/server.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          customerName: this.state.customerName,
+          customerTel: this.state.customerTel,
+          customerAddr: this.state.customerAddr,
+          orderData: this.props.itemsInCart
+        })
+      }).then(function (response) {
+        return console.log(response);
+      }).catch(function (error) {
+        return console.error("error", error);
+      });
     }
   }, {
     key: "render",
@@ -331,7 +346,7 @@ var CheckoutForm = function (_React$Component) {
         ),
         _react2.default.createElement(
           "form",
-          { className: "checkout__form", action: "/php/send-order.php", method: "POST" },
+          { className: "checkout__form" },
           _react2.default.createElement("input", { type: "input", className: "checkout__form__input", name: "customerName", placeholder: "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F", value: this.state.customerName, onChange: this.handleNameChange }),
           _react2.default.createElement("input", { type: "input", className: "checkout__form__input", name: "customerTel", placeholder: "\u0422\u0435\u043B\u0435\u0444\u043E\u043D", value: this.state.customerTel, onChange: this.handleTelChange }),
           _react2.default.createElement("input", { type: "input", className: "checkout__form__input", name: "customerAddr", placeholder: "\u0410\u0434\u0440\u0435\u0441", value: this.state.customerAddr, onChange: this.handleAddrChange }),
@@ -340,7 +355,7 @@ var CheckoutForm = function (_React$Component) {
             { className: "checkout__checkout-button-container" },
             _react2.default.createElement(
               "button",
-              { className: "checkout__checkout-button" },
+              { className: "checkout__checkout-button", onClick: this.handleSubmit },
               "\u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437"
             )
           )

@@ -30,10 +30,23 @@ export default class CheckoutForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Данные были отправлены!');
-    console.log(this.state);
+    console.log(this.state.customerAddr);
     console.log(this.props.itemsInCart);
     event.preventDefault();
+    fetch('/php/server.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({
+        customerName: this.state.customerName,
+        customerTel : this.state.customerTel,
+        customerAddr : this.state.customerAddr,
+        orderData : this.props.itemsInCart
+      })
+    })
+    .then(response => console.log(response))
+    .catch(error => console.error("error",error));
   }
 
   render() {
@@ -42,15 +55,16 @@ export default class CheckoutForm extends React.Component {
 					<p className="main-text main-text_bold">
 						Пожалуйста, заполните форму
 					</p>
-					<form className="checkout__form" action="/php/send-order.php" method="POST">
+					<form className="checkout__form">
 						<input type="input" className="checkout__form__input" name="customerName" placeholder="Ваше имя" value={this.state.customerName} onChange={this.handleNameChange} />
 						<input type="input" className="checkout__form__input" name="customerTel" placeholder="Телефон" value={this.state.customerTel} onChange={this.handleTelChange} />
 						<input type="input" className="checkout__form__input" name="customerAddr" placeholder="Адрес" value={this.state.customerAddr} onChange={this.handleAddrChange} />
 						<div className="checkout__checkout-button-container">
-							<button className="checkout__checkout-button">Оформить заказ</button>
+							<button className="checkout__checkout-button" onClick={this.handleSubmit}>Оформить заказ</button>
 						</div>
 					</form>
 				</div>	
     );
   }
 }
+

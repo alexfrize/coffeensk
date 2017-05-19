@@ -24,7 +24,6 @@ export default class CheckoutForm extends React.Component {
 
   handleNameChange(event) {
     this.setState({customerName: event.target.value});
-    if (event.target.value !== "") this.canCheckout =
     this.updateCheckoutPossibility();
   }
 
@@ -45,7 +44,7 @@ export default class CheckoutForm extends React.Component {
     console.log(this.state.customerAddr);
     console.log(this.props.itemsInCart);
     event.preventDefault();
-    fetch('/php/server.php', {
+    fetch('/php/send-order.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

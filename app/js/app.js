@@ -306,7 +306,7 @@ var CheckoutForm = function (_React$Component) {
     key: "handleNameChange",
     value: function handleNameChange(event) {
       this.setState({ customerName: event.target.value });
-      if (event.target.value !== "") this.canCheckout = this.updateCheckoutPossibility();
+      this.updateCheckoutPossibility();
     }
   }, {
     key: "handleTelChange",
@@ -331,7 +331,7 @@ var CheckoutForm = function (_React$Component) {
       console.log(this.state.customerAddr);
       console.log(this.props.itemsInCart);
       event.preventDefault();
-      fetch('/php/server.php', {
+      fetch('/php/send-order.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -2084,13 +2084,20 @@ var SendMessageForm = function (_React$Component) {
     _this.handleTelChange = _this.handleTelChange.bind(_this);
     _this.handleMessageChange = _this.handleMessageChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.canCheckout = false;
     return _this;
   }
 
   _createClass(SendMessageForm, [{
+    key: "updateCheckoutPossibility",
+    value: function updateCheckoutPossibility() {
+      this.canCheckout = this.state.customerName && this.state.customerTel.length > 9 && this.state.customerMessage.length > 10;
+    }
+  }, {
     key: "handleNameChange",
     value: function handleNameChange(event) {
       this.setState({ customerName: event.target.value });
+      this.updateCheckoutPossibility();
     }
   }, {
     key: "handleTelChange",
@@ -2099,18 +2106,46 @@ var SendMessageForm = function (_React$Component) {
       var newState = tel.match(/^\+[0-9-]*|^[0-9]+[0-9-]*/g);
       newState = newState !== null ? newState.join('') : '';
       this.setState({ customerTel: newState });
+      this.updateCheckoutPossibility();
     }
   }, {
     key: "handleMessageChange",
     value: function handleMessageChange(event) {
       this.setState({ customerMessage: event.target.value });
+      this.updateCheckoutPossibility();
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      alert('Данные были отправлены!');
-      console.log(this.state);
+      var _this2 = this;
+
       event.preventDefault();
+      fetch('/php/send-message.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          customerName: this.state.customerName,
+          customerTel: this.state.customerTel,
+          customerMessage: this.state.customerMessage
+        })
+      }).then(function (response) {
+        console.log(response);
+        console.log(response.status);
+        if (response.status == 200 || response.status == 0) {
+          _this2.setState({
+            customerName: "",
+            customerTel: "",
+            customerMessage: ""
+          });
+          alert("Ваше сообщение было отправлено. Скоро с Вами свяжутся.");
+        } else {
+          alert("При отправке сообщения возникла ошибка. Пожалуйста, повторите попытку чуть позже, либо свяжитесь с нами по телефону.");
+        }
+      }).catch(function (error) {
+        return console.error("error", error);
+      });
     }
   }, {
     key: "render",
@@ -2138,7 +2173,7 @@ var SendMessageForm = function (_React$Component) {
             { className: "send-message__send-message-button-container" },
             _react2.default.createElement(
               "button",
-              { className: "send-message__send-message-button" },
+              { disabled: !this.canCheckout, className: "send-message__send-message-button" },
               "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435"
             )
           )

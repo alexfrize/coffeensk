@@ -1,44 +1,44 @@
 [
 	{
 		"title" : "Alta Roma Arabica",
-		"description" : "Арабика-100%",
+		"description" : "Арабика-80%, Робуста-20%",
 		"weight" : "1 кг",
 		"price" : "1000",
 		"image" : "coffee_alta_roma_arabica.jpg"
 	},
 	{
-		"title" : "Alta Roma Crema",
-		"description" : "Робуста-70%, Арабика-30%",
+		"title" : "Кофе в зернах Мокко",
+		"description" : "Робуста-75%, Арабика-25%",
 		"weight" : "1 кг",
 		"price" : "850",
-		"image" : "coffee_alta_roma_crema.jpg"
+		"image" : "coffee_alta_roma_mocha.jpg"
 	},
 	{
-		"title" : "Alta Roma Espresso",
-		"description" : "Арабика-70%, Робуста-30%",
+		"title" : "Alta Roma Azzurro",
+		"description" : "Арабика-100%",
 		"weight" : "1 кг",
-		"price" : "950",
-		"image" : "coffee_alta_roma_espresso.jpg"
+		"price" : "1000",
+		"image" : "coffee_alta_roma_azzurro.jpg"
 	},
 	{
 		"title" : "Alta Roma Oro",
 		"description" : "Арабика-100%",
 		"weight" : "1 кг",
-		"price" : "1750",
+		"price" : "1550",
 		"image" : "coffee_alta_roma_oro.jpg"
 	},
 	{
 		"title" : "Alta Roma Platino",
 		"description" : "Арабика-90%, Робуста-10%",
 		"weight" : "1 кг",
-		"price" : "1650",
+		"price" : "1500",
 		"image" : "coffee_alta_roma_platino.jpg"
 	},
 	{
 		"title" : "Alta Roma Verde",
-		"description" : "Арабика-100%",
+		"description" : "Арабика-70%, Робуста-30%",
 		"weight" : "1 кг",
-		"price" : "1200",
+		"price" : "1100",
 		"image" : "coffee_alta_roma_verde.jpg"
 	}												
 ]

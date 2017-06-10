@@ -14,11 +14,16 @@ export default class SendMessageForm extends React.Component {
     this.handleTelChange = this.handleTelChange.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.confirmPersonalData = this.confirmPersonalData.bind(this);
     this.canCheckout = false;
+    this.confirmPersonalDataValue = false;
   }
 
   updateCheckoutPossibility() {
-    this.canCheckout = this.state.customerName && this.state.customerTel.length > 9 && this.state.customerMessage.length > 10;
+    if (this.state.customerName && this.state.customerTel.length >= 7 && this.state.customerMessage.length > 10 && this.confirmPersonalDataValue)
+      this.canCheckout = true;
+    else
+      this.canCheckout = false;
   }
 
   handleNameChange(event) {
@@ -35,6 +40,11 @@ export default class SendMessageForm extends React.Component {
   handleMessageChange(event) {
     this.setState({customerMessage: event.target.value});
     this.updateCheckoutPossibility();    
+  }
+  confirmPersonalData(event) {
+      this.confirmPersonalDataValue = event.target.checked;
+      this.updateCheckoutPossibility();
+      this.setState({});
   }
 
   handleSubmit(event) {
@@ -81,6 +91,12 @@ export default class SendMessageForm extends React.Component {
                Ваше сообщение
             </textarea>
 						<div className="send-message__send-message-button-container">
+              <div>
+                <input onClick={this.confirmPersonalData} value={this.state.confirmPersonalDataValue} className="send-message__send-message-button-container__checkbox" type="checkbox" />
+                <label className="send-message__send-message-button-container__checkbox-label">Я соглашаюсь с обработкой моих персональных данных
+                  (<a className="send-message__send-message-button-container__confirmation-link" target="_blank" href="data/confirmation.html">Текст соглашения</a>)
+                </label>
+              </div>            
 							<button disabled={!this.canCheckout} className="send-message__send-message-button">Отправить сообщение</button>
 						</div>
 					</form>

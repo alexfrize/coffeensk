@@ -14,12 +14,17 @@ export default class CheckoutForm extends React.Component {
     this.handleTelChange = this.handleTelChange.bind(this);
     this.handleAddrChange = this.handleAddrChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.confirmPersonalData = this.confirmPersonalData.bind(this);
     this.canCheckout = false;
+    this.confirmPersonalDataValue = false;
 
   }
 
   updateCheckoutPossibility() {
-    this.canCheckout = this.state.customerName && this.state.customerTel.length > 9 && this.state.customerAddr.length > 10;
+    if (this.state.customerName && this.state.customerTel.length >= 7 && this.state.customerAddr.length > 10 && this.confirmPersonalDataValue)
+      this.canCheckout = true;
+    else
+      this.canCheckout = false;
   }
 
   handleNameChange(event) {
@@ -38,6 +43,12 @@ export default class CheckoutForm extends React.Component {
   handleAddrChange(event) {
     this.setState({customerAddr: event.target.value});
     this.updateCheckoutPossibility();
+  }
+
+  confirmPersonalData(event) {
+      this.confirmPersonalDataValue = event.target.checked;
+      this.updateCheckoutPossibility();
+      this.setState({});
   }
 
   handleSubmit(event) {
@@ -85,6 +96,12 @@ export default class CheckoutForm extends React.Component {
 						<input type="input" className="checkout__form__input" name="customerTel" placeholder="Телефон" value={this.state.customerTel} onChange={this.handleTelChange} />
 						<input type="input" className="checkout__form__input" name="customerAddr" placeholder="Адрес" value={this.state.customerAddr} onChange={this.handleAddrChange} />
 						<div className="checkout__checkout-button-container">
+              <div>
+                <input onClick={this.confirmPersonalData} value={this.state.confirmPersonalDataValue} className="checkout__form__checkbox" type="checkbox" />
+                <label className="checkout__form__checkbox-label">Я соглашаюсь с обработкой моих персональных данных
+                  (<a className="checkout__form__confirmation-link" target="_blank" href="data/confirmation.html">Текст соглашения</a>)
+                </label>
+              </div>
 							<button disabled={!this.canCheckout} className="checkout__checkout-button" onClick={this.handleSubmit}>Оформить заказ</button>
 						</div>
 					</form>

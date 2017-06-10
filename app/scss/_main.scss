@@ -9,6 +9,13 @@
 	background-size: contain;
 	width: 70px;
 	height: 70px;
+	@include breakpoint($mdSize) {
+		width: 100px;
+		height: 100px;
+	}	
+	@include breakpoint($lgSize+100px) {
+		top: 0;
+	}
 	&:hover {
 		cursor: pointer;
 	}
@@ -32,7 +39,11 @@
 				size: 10px;
 				color: $brown;
 			}
+			@include breakpoint($mdSize) {
+				font-size: 16px;
+			}			
 		}
+
 
 	}
 
@@ -232,6 +243,30 @@
 				}
 			}
 		}
+
+		.checkout__form__checkbox {
+			margin-top: 0;
+			margin-right: 5px;
+		}		
+		.checkout__form__checkbox-label {
+			font: {
+				family: $opensans;
+				size: 12px;
+				weight: $regular;
+			}
+			color: $brown;
+			margin-bottom: 10px;
+
+			.checkout__form__confirmation-link {
+				@extend %transition;
+				color: lighten($brown,20%);
+				color: darken($lbrown,40%);
+				&:hover {
+					color: darken($lbrown,10%);
+				}
+			}	
+		}			
+	
 		
 	}
 }
@@ -251,6 +286,29 @@
 		.send-message__send-message-button {
 			@extend .main-button;
 		}
+		
+		.send-message__send-message-button-container__checkbox {
+					margin-top: 0;
+					margin-right: 5px;
+				}		
+				.send-message__send-message-button-container__checkbox-label {
+					font: {
+						family: $opensans;
+						size: 12px;
+						weight: $regular;
+					}
+					color: $brown;
+					margin-bottom: 10px;
+
+					.send-message__send-message-button-container__confirmation-link {
+						@extend %transition;
+						color: lighten($brown,20%);
+						color: darken($lbrown,40%);
+						&:hover {
+							color: darken($lbrown,10%);
+						}
+					}	
+				}			
 	}	
 
 	.send-message__form {

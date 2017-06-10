@@ -7,7 +7,8 @@ var buffer = require('vinyl-buffer');
 var browserSync = require('browser-sync');
 var autoprefixer = require('autoprefixer');
 var postcss = require('gulp-postcss');
-
+var uglify = require('gulp-uglify');
+var pump = require('pump');
 
 gulp.task('browser-sync', function() {
 	browserSync({
@@ -44,4 +45,17 @@ gulp.task('watch', ['sass', 'babel', 'browser-sync'], function() {
 	gulp.watch('app/*.html', browserSync.reload);
 	gulp.watch('app/es2015/*.jsx',  ['babel']);
 	gulp.watch('app/es2015/components/*.jsx',  ['babel']);
+});
+
+gulp.task('optimize', ['sass', 'babel', 'watch'], function (cb) {
+	process.env.NODE_ENV = 'production';
+	
+	pump([
+        gulp.src('app/js/app.js'),
+        uglify(),
+        gulp.dest('app/optimized')
+    ],
+    cb
+  	);
+  	
 });

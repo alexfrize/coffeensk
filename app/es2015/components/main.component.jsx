@@ -62,16 +62,16 @@ export class Main extends React.Component {
 		return (
 			<main>
 				<Header />
-				<div>
+				<Switch>
 					<Route exact path="/" render={ShopCoffeeRoute} />
 					<Route path="/rent" component={Rent} />
 					<Route path="/repair" component={Repair} />
-					<Route path="/сonsumables" component={Consumables} />
+					<Route path="/consumables" component={Consumables} />
 					<Route path="/contacts" component={Contacts} />				
 					<Route path="/checkout" render={CheckoutRoute} />
 					<Route path="/cart" render={CartRoute} />
 					<Route path="/sendmessage" component={SendMessage} />
-				</div>
+				</Switch>
 				<ToCartButton itemsInCart = {this.state.itemsInCart} />
 				<Footer />
 			</main>

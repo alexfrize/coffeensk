@@ -4,8 +4,7 @@ import ReactDOM from "react-dom";
 import Main from "./components/main.component.jsx";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { BrowserRouter, Route } from "react-router-dom";
-
+import { HashRouter, Route, Switch } from "react-router-dom";
 
 var app = document.getElementById("app");
 
@@ -25,11 +24,11 @@ function mainAppReducer(state, action) {
 }
 const store = createStore(mainAppReducer);
 var render = () => ReactDOM.render(
-							<BrowserRouter>
+							<HashRouter>
 								<Provider store={store}>
 									<Route path="/" component = {Main} />
 								</Provider>
-							</BrowserRouter>
+							</HashRouter>
 						, app);
 store.subscribe(render);
 render();

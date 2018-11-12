@@ -48,7 +48,7 @@ const Footer = () => {
 									<ul>
 										<li><Link to="/repair">Ремонт и обслуживание</Link></li>
 										<li><Link to="/rent">Аренда кофемашин</Link></li>
-										<li><Link to="/сonsumables">Запчасти для кофемашин</Link></li>
+										<li><Link to="/consumables">Запчасти для кофемашин</Link></li>
 										<li><Link to="/">Продажа кофе</Link></li>
 										<li><Link to="/contacts">Наши контакты</Link></li>
 									</ul>

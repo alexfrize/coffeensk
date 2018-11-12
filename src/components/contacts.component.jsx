@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import _ from "lodash";
 import "./contacts.component.scss";

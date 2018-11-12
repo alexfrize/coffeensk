@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./cart.component.scss";
 
 export default class Cart extends React.Component {
 	constructor(props) {

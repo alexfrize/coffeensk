@@ -8,10 +8,12 @@ import Rent from "./rent.component.jsx";
 import Repair from "./repair.component.jsx";
 import Contacts from "./contacts.component.jsx";
 import ToCartButton from "./to-cart-button.component.jsx";
-import Consumables from "./сonsumables.component.jsx";
+import Consumables from "./consumables.component.jsx";
 import SendMessage from "./send-message.component.jsx";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
+
+/*
 import { AnimatedSwitch } from 'react-router-transition';
 
 function mapStyles(styles) {
@@ -37,7 +39,7 @@ const bounceTransition = {
 		scaleY: 1,
   },
 };
-
+*/
 
 export class Main extends React.Component {
 	constructor(props) {
@@ -98,7 +100,7 @@ export class Main extends React.Component {
 					<Route exact path="/" render={ShopCoffeeRoute} />
 					<Route path="/rent" component={Rent} />
 					<Route path="/repair" component={Repair} />
-					<Route path="/сonsumables" component={Consumables} />
+					<Route path="/consumables" component={Consumables} />
 					<Route path="/contacts" component={Contacts} />				
 					<Route path="/checkout" render={CheckoutRoute} />
 					<Route path="/cart" render={CartRoute} />

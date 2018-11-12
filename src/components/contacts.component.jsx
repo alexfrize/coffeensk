@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import _ from "lodash";
+import "./contacts.component.scss";
+
 export default class Contacts extends React.Component {
 	
 	constructor(props) {

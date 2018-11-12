@@ -1,0 +1,10 @@
+@import '../scss/style-import';
+
+/* ============= Аренда кофемашины ============= */
+.rent-coffee-machine {
+	.rent-coffee-machine__title-container {
+		.rent-coffee-machine__title-container__title {
+			@extend .h2;
+		}
+	}
+}

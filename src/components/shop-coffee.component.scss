@@ -1,0 +1,96 @@
+@import '../scss/style-import';
+
+/* ============= Магазин кофе ============= */
+.shop-coffee {
+	.shop-coffee__title-container {
+		.shop-coffee__title-container__title {
+			@extend .h2;
+		}
+	}
+
+	.shop-coffee__item {
+		@extend .col-sm-6, .col-md-3;
+		@extend .center-block;
+		max-width: 350px; 
+		@include breakpoint($smSize) {
+			max-width: none; 
+		}
+		margin-top: 10px;
+		margin-bottom: 10px;
+		.shop-coffee__item__inner {
+		@extend .col-md-12;
+		background: white;
+		border: 2px solid $brown;			
+			.shop-coffee__item__kg {
+				@extend .col-xs-3, .col-md-6, .col-lg-3;
+				background: $green;
+				.shop-coffee__item__kg__text {
+					@extend .text-center;
+					margin-bottom: 0;
+					color: white;
+				}
+			}
+			.shop-coffee__item__space {
+				@extend .col-xs-4, .hidden-md, .col-lg-4;
+			}
+			.shop-coffee__item__price {
+				@extend .col-xs-5, .col-md-6, .col-lg-5;
+				background: $green;
+				padding-left: 5px;
+				padding-right: 5px;				
+				.shop-coffee__item__price__text {
+					@extend .text-center;
+					margin-bottom: 0;
+					color: white;
+				}
+			}
+			.shop-coffee__item__image {
+				@extend .col-xs-12;
+				padding: 30px;
+				.shop-coffee__item__image__img {
+					@extend .center-block, .img-responsive;
+				}
+			}
+			.shop-coffee__item__description {
+				padding: 10px 20px;
+				background: $brown;
+				min-height: 95px;
+
+				.shop-coffee__item__description__text {
+					@extend .text-center;
+					color: white;
+					margin-bottom: 0;
+					font: {
+						family: $opensans;
+						size: 18px;
+						weight: $regular;
+
+					}
+				}
+			}
+			.shop-coffee__item__button-container {
+				@extend .text-center;
+				
+				padding-bottom: 10px;
+				background: $brown;
+				.shop-coffee__item__button-container__button {
+					@extend .btn, %transition;
+					padding: 8px 25px;
+					background: $lbrown;
+					font: {
+						family: $opensans;
+						size: 14px;
+						weight: $bold;
+					}
+					color: $brown;
+					text-transform: uppercase;
+
+					&:hover {
+						background: $bgbrown;
+						color: lighten($brown,10%);
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./repair.component.scss";
 
 export default class Repair extends React.Component {
 	constructor(props) {

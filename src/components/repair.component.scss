@@ -1,0 +1,10 @@
+@import '../scss/style-import';
+
+/* ============= Ремонт и обслуживание ============= */
+.repair-and-service {
+	.repair-and-service__title-container {
+		.repair-and-service__title-container__title {
+			@extend .h2;
+		}
+	}
+}

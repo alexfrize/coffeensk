@@ -1,6 +1,5 @@
 import React from "react";
-
-
+import "./checkout.component.scss";
 
 export default class CheckoutForm extends React.Component {
   constructor(props) {

@@ -1,0 +1,56 @@
+@import '../scss/style-import';
+
+/* ============= Кнопка, ведущая в корзину товаров ============= */
+.to-cart-button {
+	@extend %transition;
+	z-index: 100;
+	position: fixed;
+	bottom: 0;
+	left : 0;
+	background: $brown url($imgpath + 'to-cart-button__img.png') no-repeat;
+	background-size: contain;
+	width: 70px;
+	height: 70px;
+	&:hover {
+		cursor: pointer;
+	}
+
+	@include breakpoint($mdSize) {
+    width: 100px;
+		height: 100px;
+		left: 0px;
+	}
+  @include breakpoint(1300px) {
+		top: 0; 
+		left: unset;
+		right : 0;
+	} 
+
+	.to-cart-button__text-container {
+		position: absolute;
+		top: 10%;
+		left: 61%;
+		width: 28%;
+		height: 28%;		
+		border-radius: 30px;
+		border: 2px solid $lbrown;
+		background: white;
+		color: white;
+		.to-cart-button__text-container__text {
+			text-align: center;
+			padding: 0;
+			margin-top: 0px;
+			font: {
+				family: $opensans;
+				size: 10px;
+				color: $brown;
+			}
+			@include breakpoint($mdSize) {
+				font: {
+					size: 16px;
+				}
+			}
+		}
+
+	}
+}

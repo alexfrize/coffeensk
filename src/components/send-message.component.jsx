@@ -1,5 +1,6 @@
 import React from "react";
-import SendMessageForm from "./send-message-form.component.jsx";
+import SendMessageForm from "./send-message.component.jsx";
+import "./send-message.component.scss";
 
 export default class SendMessage extends React.Component {
 	constructor(props) {

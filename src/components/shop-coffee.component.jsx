@@ -1,4 +1,6 @@
 import React from "react";
+import "./shop-coffee.component.scss";
+
 export default class ShopCoffee extends React.Component {
 	constructor(props) {
 		super(props);

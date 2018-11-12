@@ -1,5 +1,4 @@
 import React from "react";
-import coffeeJSON from '../data/coffee.json';
 export default class ShopCoffee extends React.Component {
 	constructor(props) {
 		super(props);
@@ -34,16 +33,13 @@ export default class ShopCoffee extends React.Component {
 	}
 
 	getData() {
-		const url="../data/coffee.json";
-		console.log('coffeeJSON',coffeeJSON);
-		this.setState({shopItems : coffeeJSON});
-
-		// fetch(url)
-		// 	.then((resp) => resp.json())
-		// 	.then((data) => {
-		// 		this.setState({shopItems : data});
-		// 	})
-		// .catch((error) => console.error("Ошибка загрузки данных из файла", url));
+		const url="./data/coffee.json";
+		fetch(url)
+			.then((resp) => resp.json())
+			.then((data) => {
+				this.setState({shopItems : data});
+			})
+		.catch((error) => console.error("Ошибка загрузки данных из файла", url));
 		
 	}
 
@@ -51,7 +47,7 @@ export default class ShopCoffee extends React.Component {
 	render() {
 		var itemsArr = [];
 		var itemsRow = [];
-		var imgPath = "img/coffee/"
+		var imgPath = "img/coffee/";
 
 		//console.log("this.state.shopItems ===", this.state.shopItems);
 		for (let i=0; i < this.state.shopItems.length; i++) {

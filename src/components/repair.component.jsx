@@ -1,6 +1,35 @@
 import React from "react";
 
 export default class Repair extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {typesOfWork : {
+			title : "",
+			types : []
+		}};
+	}
+
+	componentDidMount() {
+		const url = "./data/types-of-work.json";
+		fetch(url)
+		.then((resp) => resp.json())
+		.then((data) => {
+			this.setState({typesOfWork : data});
+		})
+	.catch((error) => console.error("Ошибка загрузки данных из файла", url));
+	}
+
+	getTypesOfWork() {
+		return (
+			this.state.typesOfWork.types.map((item, i) => (
+				<tr key={i}>
+					<td>{item.name}</td>
+					<td>{item.price}</td>
+				</tr>
+			))
+		);
+	}
+
 	render() {
 		console.log("Repair /");
 		return(
@@ -32,69 +61,9 @@ export default class Repair extends React.Component {
 								<table className="main-table">
 									<tbody>
 										<tr>
-											<th colSpan="2">Стоимость видов работ для зерновых кофемашин</th>
+											<th colSpan="2">{this.state.typesOfWork.title}</th>
 										</tr>
-										<tr>
-											<td>Выезд мастера-приемщика по городу</td>
-											<td>Бесплатно</td>
-										</tr>
-										<tr>
-											<td>Диагностика</td>
-											<td>Бесплатно</td>
-										</tr>
-										<tr>
-											<td>Ремонт механических частей или их замена</td>
-											<td>1000-1500 руб.</td>
-										</tr>									
-										<tr>
-											<td>Ремонт электрических цепей, датчиков</td>
-											<td>1700-2400 руб.</td>
-										</tr>	
-										<tr>
-											<td>Ремонт управляющих плат</td>
-											<td>от 2700 руб.</td>
-										</tr>
-										<tr>
-											<td>ЗИП (запасные инженерные принадлежности)</td>
-											<td>По договоренности</td>
-										</tr>
-										<tr>
-											<td>Доставка до/из СЦ (при ремонте)</td>
-											<td>Бесплатно</td>
-										</tr>	
-										<tr>
-											<td>Экспертное заключение (диагностика)</td>
-											<td>800 руб.</td>
-										</tr>
-										<tr>
-											<td>Ремонт мультиварки</td>
-											<td>800 руб.</td>
-										</tr>								
-									</tbody>
-								</table>
-
-								<table className="main-table">
-					
-									<tbody>
-										<tr>
-											<th colSpan="2">Стоимость отдельных видов работ</th>
-										</tr>
-										<tr>
-											<td>Декальцинация</td>
-											<td>1500 руб.</td>
-										</tr>
-										<tr>
-											<td>Очистка от кофейных масел</td>
-											<td>800 руб.</td>
-										</tr>
-										<tr>
-											<td>Техническое обслуживание</td>
-											<td>1500 руб.</td>
-										</tr>									
-										<tr>
-											<td>Дезинфекция кофемашины</td>
-											<td>2500 руб.</td>
-										</tr>	
+										{this.getTypesOfWork()}
 									</tbody>
 								</table>
 

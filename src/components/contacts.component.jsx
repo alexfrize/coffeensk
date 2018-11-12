@@ -357,9 +357,9 @@ export default class Contacts extends React.Component {
 									тел: +7(383)-375-58-09<br />
 									e-mail: info@coffeensk.com
 								</p>
-								<div className="main-button-container">
+								{/* <div className="main-button-container">
 									<Link to="/sendmessage"><button className="main-button">Оставить заявку</button></Link>
-								</div>						
+								</div>						 */}
 							</div>
 
 

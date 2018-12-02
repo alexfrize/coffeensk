@@ -19,10 +19,40 @@ export default class ShopCoffee extends React.Component {
 		if (newStateArray.filter( el => el === newSelectedItem).length === 0) {
 			newSelectedItem.quantity = 1;
 			newStateArray.push(newSelectedItem);
-		} 
+		} else {
+			let foundItemAtIndex = newStateArray.map(el => el.title).indexOf(newSelectedItem.title);
+			console.log('foundExistinItemAtIndex==',foundItemAtIndex);
+			newStateArray[foundItemAtIndex].quantity++;
+		}
 		
 		this.setState({itemsInCart : newStateArray});
 		this.props.addNewItemToCart(newStateArray);
+
+		/*
+		// Проверяем, есть ли уже такой товар в корзине
+		console.log('newStateArray==,', newStateArray);
+		console.log('newSelectedItem==',newSelectedItem);
+		newStateArray.filter( (el, elIndex) => {
+			console.log('el',el);
+			console.log('el.title==',el.title);
+			console.log('newSelectedItem.title', newSelectedItem.title);
+			if (el.title === newSelectedItem.title) {
+				isItemNew = false;
+			} else {
+				isItemNew = true;
+			}
+		});
+
+		if (isItemNew) {
+			newSelectedItem.quantity = 1;
+			newStateArray.push(newSelectedItem);
+		} else {
+			newStateArray[elIndex].quantity++;			
+		}
+		this.setState({itemsInCart : newStateArray});
+		this.props.addNewItemToCart(newStateArray);
+		*/
+
 	}
 
     componentDidMount() {

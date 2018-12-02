@@ -1,6 +1,29 @@
 @import '../scss/style-import';
 
 /* ============= Кнопка, ведущая в корзину товаров ============= */
+
+.animate-counter-enter {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.animate-counter-enter-active {
+  opacity: 0.01;
+	transition: all 200ms ease-out;
+	transform: scale(3);
+}
+
+.animate-counter-leave {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.animate-counter-leave-active {
+  opacity: 0.01;
+	transition: all 200ms ease-in;
+	transform: scale(3);
+}
+
 .to-cart-button {
 	@extend %transition;
 	z-index: 100;
@@ -14,7 +37,7 @@
 	&:hover {
 		cursor: pointer;
 	}
-
+	
 	@include breakpoint($mdSize) {
     width: 100px;
 		height: 100px;

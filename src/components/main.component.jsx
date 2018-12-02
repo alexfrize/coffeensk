@@ -49,9 +49,12 @@ export class Main extends React.Component {
 		this.changeQantity = this.changeQantity.bind(this);
 		this.state = {itemsInCart : []};
 	}
+
 	addNewItemToCart(itemsInCart) {
-		this.props.dispatch({type : 'ADD_TO_CART',
-							 items: itemsInCart});
+		this.props.dispatch({
+			type : 'ADD_TO_CART',
+			items: itemsInCart
+		});
 		this.setState({itemsInCart : itemsInCart});
 		console.log("this.state", this.state);
 	}
@@ -65,7 +68,6 @@ export class Main extends React.Component {
 							 items: itemsLeft});    	
 		console.log("itemsLeft == ", itemsLeft);
     	this.setState({itemsInCart: itemsLeft});
-
     }
 
 	getItemsInCart(itemsInCart) {

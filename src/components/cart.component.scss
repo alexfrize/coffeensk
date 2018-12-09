@@ -1,6 +1,7 @@
  @import '../scss/style-import';
  
  /* ============= Корзина товаров ============= */
+
  .cart {
 	.cart__title-container {
 		.cart__title-container__title {
@@ -57,6 +58,15 @@
 			background: transparent;
 			color: $brown;
 		}	
+		::selection {
+			background: $brown;
+			color: $bgbrown;
+		}
+		
+		::-moz-selection {
+			background: $brown;
+			color: $bgbrown;
+		}
 		input[type=number]::-webkit-inner-spin-button,
 		input[type=number]::-webkit-outer-spin-button
 		{
@@ -66,7 +76,8 @@
 
 		input[type=number]
 		{
-		  -moz-appearance: textfield;
+			-moz-appearance: textfield;
+
 		}	
 		.cart__table__button-add-sub {
 			float: left;

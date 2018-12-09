@@ -8,39 +8,48 @@ export default class Cart extends React.Component {
 		this.state = {itemsInCart : []};
 		this.canCheckout = false;
 		this.increaseQuantity = this.increaseQuantity.bind(this);
+		this.decreaseQuantity = this.decreaseQuantity.bind(this);
+		this.deleteItemFromCart = this.deleteItemFromCart.bind(this);
 	}
 
-    deleteItemFromCart(i) {
-    	var itemsLeft = this.state.itemsInCart.filter((x,ind) => ind !== i);
-    	this.props.deleteItemFromCart(i);
-    	console.log("itemsLeft === ", itemsLeft);
-    	this.setState({itemsInCart : itemsLeft});
-    }
+	deleteItemFromCart(i) {
+  	var itemsLeft = this.state.itemsInCart.filter((x,ind) => ind !== i);
+   	this.props.deleteItemFromCart(i);
+   	console.log("itemsLeft === ", itemsLeft);
+   	this.setState({itemsInCart : itemsLeft});
+  }
 
-    componentDidMount() {
-		console.log('cart.component.jsx - componentDidMount()', this.props);
+  componentDidMount() {
 		if (this.state.itemsInCart !== this.props.itemsInCart) {
 			this.setState({itemsInCart : this.props.itemsInCart});
 		}
 	}
 
 	handleInput(i, event) {
-		console.log(event.target.value);
-		console.log("counet", i);
-		this.props.changeQantity(i, event.target.value);
-	}
-	increaseQuantity(i, event) {
-		console.log("this.state.itemsInCart[i]", this.state.itemsInCart[i]);
-		var newQuantity = +this.state.itemsInCart[i].quantity + 1;
-		this.props.changeQantity(i, newQuantity);
+		let inputData = event.target.value;
+		inputData = inputData.replace(/[^0-9]+/gi, '');
+
+		if (inputData !== '') {
+			inputData = Number(inputData);
+			if (inputData !== 0 && inputData <= 99) {
+				this.props.changeQantity(i, inputData);
+			}
+		}
 	}
 
-	decreaseQuantity(i, event) {
-		console.log("this.state.itemsInCart[i]", this.state.itemsInCart[i]);
-		var newQuantity = +this.state.itemsInCart[i].quantity - 1;
+	increaseQuantity(i) {
+		var newQuantity = Number(this.state.itemsInCart[i].quantity) + 1;
+		if (newQuantity <= 99) {
+			this.props.changeQantity(i, newQuantity);
+		}
+	}
+
+	decreaseQuantity(i) {
+		var newQuantity = Number(this.state.itemsInCart[i].quantity) - 1;
 		if (newQuantity <= 0) newQuantity = 1;
 		this.props.changeQantity(i, newQuantity);
 	}	
+
 	render() {
 
 		console.log("Cart /");
@@ -53,32 +62,31 @@ export default class Cart extends React.Component {
 
 		if (!itemsInCart.length) {
 			this.canCheckout = false;
-			itemsInTable = 	(<tr>
-								<td colSpan="5">Ваша корзина пуста</td>
-							</tr>);
-		} 
-		else {
-			totalPrice = 0;
-			this.canCheckout = true;
-			itemsInTable = (itemsInCart.map((item, i) => {
-								totalPrice += +item.price*item.quantity;
-
-								console.log("totalPrice==",totalPrice);
-								return (
-									<tr key={i}>
-										<td>{item.title}</td>
-										<td><img alt="Item" src={imgPath + item.image} /></td>
-										<td>
-											<input onChange={this.handleInput.bind(this, i)} className="cart__table__input" type="number" value={this.state.itemsInCart[i].quantity} />
-											<button className="cart__table__button-add" onClick={this.increaseQuantity.bind(this, i)}>+</button>
-											<button className="cart__table__button-sub" onClick={this.decreaseQuantity.bind(this, i)}>-</button>
-										</td>
-										<td>{item.price * this.state.itemsInCart[i].quantity} руб.</td>
-										<td><button className="cart__table__delete-button" onClick={this.deleteItemFromCart.bind(this, i)}><i className="fa fa-times"></i></button></td>
-									</tr>);
+			itemsInTable = (
+				<tr>
+					<td colSpan="5">Ваша корзина пуста</td>
+				</tr>
+			);
+		} else {
+				totalPrice = 0;
+				this.canCheckout = true;
+				itemsInTable = (itemsInCart.map((item, i) => {
+					totalPrice += +item.price*item.quantity;
+					return (
+						<tr key={i}>
+							<td>{item.title}</td>
+							<td><img alt="Item" src={imgPath + item.image} /></td>
+							<td>
+								<input onChange={this.handleInput.bind(this, i)} className="cart__table__input" type="number" value={this.state.itemsInCart[i].quantity} />
+								<button className="cart__table__button-add" onClick={() => this.increaseQuantity(i)}>+</button>
+								<button className="cart__table__button-sub" onClick={() => this.decreaseQuantity(i)}>-</button>
+							</td>
+							<td>{item.price * this.state.itemsInCart[i].quantity} руб.</td>
+							<td><button className="cart__table__delete-button" onClick={() => this.deleteItemFromCart(i)}><i className="fa fa-times"></i></button></td>
+						</tr>
+					);
 				}));
 		}
-
 		return (
 
 			<section className="cart">

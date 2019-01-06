@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 // import { Link } from "react-router-dom";
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import _ from "lodash";
-import "./contacts.component.scss";
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import _ from 'lodash';
+import './contacts.component.scss';
 
 export default class Contacts extends React.Component {
   constructor(props) {
@@ -30,140 +30,140 @@ export default class Contacts extends React.Component {
         defaultOptions={{
           styles: [
             {
-              featureType: "administrative.locality",
-              elementType: "geometry",
+              featureType: 'administrative.locality',
+              elementType: 'geometry',
               stylers: [
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 }
               ]
             },
             {
-              featureType: "administrative.locality",
-              elementType: "geometry.fill",
+              featureType: 'administrative.locality',
+              elementType: 'geometry.fill',
               stylers: [
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 }
               ]
             },
             {
-              featureType: "administrative.locality",
-              elementType: "labels",
+              featureType: 'administrative.locality',
+              elementType: 'labels',
               stylers: [
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 }
               ]
             },
             {
-              featureType: "administrative.locality",
-              elementType: "labels.text.fill",
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
               stylers: [
                 {
-                  color: "#103828"
+                  color: '#103828'
                 },
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 }
               ]
             },
             {
-              featureType: "administrative.locality",
-              elementType: "labels.text.stroke",
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.stroke',
               stylers: [
                 {
-                  weight: "0.75"
+                  weight: '0.75'
                 }
               ]
             },
             {
-              featureType: "administrative.neighborhood",
-              elementType: "all",
+              featureType: 'administrative.neighborhood',
+              elementType: 'all',
               stylers: [
                 {
-                  color: "#ffffff"
+                  color: '#ffffff'
                 },
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 }
               ]
             },
             {
-              featureType: "landscape",
-              elementType: "geometry",
+              featureType: 'landscape',
+              elementType: 'geometry',
               stylers: [
                 {
-                  visibility: "simplified"
+                  visibility: 'simplified'
                 }
               ]
             },
             {
-              featureType: "landscape.man_made",
-              elementType: "all",
+              featureType: 'landscape.man_made',
+              elementType: 'all',
               stylers: [
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 },
                 {
-                  color: "#ffffff"
+                  color: '#ffffff'
                 }
               ]
             },
             {
-              featureType: "landscape.man_made",
-              elementType: "geometry",
+              featureType: 'landscape.man_made',
+              elementType: 'geometry',
               stylers: [
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 },
                 {
-                  color: "#ffffff"
+                  color: '#ffffff'
                 }
               ]
             },
             {
-              featureType: "landscape.man_made",
-              elementType: "geometry.fill",
+              featureType: 'landscape.man_made',
+              elementType: 'geometry.fill',
               stylers: [
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 },
                 {
-                  color: "#fdf8f2"
+                  color: '#fdf8f2'
                 }
               ]
             },
             {
-              featureType: "landscape.man_made",
-              elementType: "geometry.stroke",
+              featureType: 'landscape.man_made',
+              elementType: 'geometry.stroke',
               stylers: [
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 },
                 {
-                  gamma: "1"
+                  gamma: '1'
                 },
                 {
-                  lightness: "0"
+                  lightness: '0'
                 },
                 {
-                  color: "#491404"
+                  color: '#491404'
                 }
               ]
             },
             {
-              featureType: "landscape.natural",
-              elementType: "geometry.fill",
+              featureType: 'landscape.natural',
+              elementType: 'geometry.fill',
               stylers: [
                 {
-                  color: "#fbf9ed"
+                  color: '#fbf9ed'
                 }
               ]
             },
             {
-              featureType: "landscape.natural.landcover",
-              elementType: "geometry.fill",
+              featureType: 'landscape.natural.landcover',
+              elementType: 'geometry.fill',
               stylers: [
                 {
                   invert_lightness: true
@@ -171,125 +171,125 @@ export default class Contacts extends React.Component {
               ]
             },
             {
-              featureType: "poi",
-              elementType: "geometry",
+              featureType: 'poi',
+              elementType: 'geometry',
               stylers: [
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 }
               ]
             },
             {
-              featureType: "poi",
-              elementType: "geometry.fill",
+              featureType: 'poi',
+              elementType: 'geometry.fill',
               stylers: [
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 }
               ]
             },
             {
-              featureType: "poi",
-              elementType: "geometry.stroke",
+              featureType: 'poi',
+              elementType: 'geometry.stroke',
               stylers: [
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 },
                 {
-                  color: "#ffffff"
+                  color: '#ffffff'
                 }
               ]
             },
             {
-              featureType: "poi",
-              elementType: "labels",
+              featureType: 'poi',
+              elementType: 'labels',
               stylers: [
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 }
               ]
             },
             {
-              featureType: "poi",
-              elementType: "labels.text",
+              featureType: 'poi',
+              elementType: 'labels.text',
               stylers: [
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 }
               ]
             },
             {
-              featureType: "poi.business",
-              elementType: "all",
+              featureType: 'poi.business',
+              elementType: 'all',
               stylers: [
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 }
               ]
             },
             {
-              featureType: "poi.park",
-              elementType: "all",
+              featureType: 'poi.park',
+              elementType: 'all',
               stylers: [
                 {
-                  color: "#d1e8bc"
+                  color: '#d1e8bc'
                 },
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 }
               ]
             },
             {
-              featureType: "road",
-              elementType: "geometry",
+              featureType: 'road',
+              elementType: 'geometry',
               stylers: [
                 {
                   lightness: 100
                 },
                 {
-                  visibility: "simplified"
+                  visibility: 'simplified'
                 },
                 {
-                  color: "#efe6dc"
+                  color: '#efe6dc'
                 }
               ]
             },
             {
-              featureType: "road",
-              elementType: "labels",
+              featureType: 'road',
+              elementType: 'labels',
               stylers: [
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 }
               ]
             },
             {
-              featureType: "road",
-              elementType: "labels.text",
+              featureType: 'road',
+              elementType: 'labels.text',
               stylers: [
                 {
-                  visibility: "simplified"
+                  visibility: 'simplified'
                 },
                 {
-                  color: "#491404"
+                  color: '#491404'
                 }
               ]
             },
             {
-              featureType: "road",
-              elementType: "labels.icon",
+              featureType: 'road',
+              elementType: 'labels.icon',
               stylers: [
                 {
-                  visibility: "simplified"
+                  visibility: 'simplified'
                 }
               ]
             },
             {
-              featureType: "transit.line",
-              elementType: "geometry",
+              featureType: 'transit.line',
+              elementType: 'geometry',
               stylers: [
                 {
-                  visibility: "on"
+                  visibility: 'on'
                 },
                 {
                   lightness: 700
@@ -297,20 +297,20 @@ export default class Contacts extends React.Component {
               ]
             },
             {
-              featureType: "water",
-              elementType: "all",
+              featureType: 'water',
+              elementType: 'all',
               stylers: [
                 {
-                  color: "#c8e7ff"
+                  color: '#c8e7ff'
                 }
               ]
             },
             {
-              featureType: "water",
-              elementType: "labels",
+              featureType: 'water',
+              elementType: 'labels',
               stylers: [
                 {
-                  visibility: "off"
+                  visibility: 'off'
                 }
               ]
             }
@@ -321,7 +321,7 @@ export default class Contacts extends React.Component {
         {props.markers.map((marker, index) => (
           <Marker
             {...marker}
-            options={{ icon: "img/map-marker.png" }}
+            options={{ icon: 'img/map-marker.png' }}
             onRightClick={() => props.onMarkerRightClick(index)}
           />
         ))}

@@ -1,7 +1,7 @@
-import React from "react";
-import { action__addToCart } from "../actions";
-import { connect } from "react-redux";
-import "./shop-coffee.component.scss";
+import React from 'react';
+import { action__addToCart } from '../actions';
+import { connect } from 'react-redux';
+import './shop-coffee.component.scss';
 
 class ShopCoffee extends React.Component {
   state = {
@@ -24,24 +24,24 @@ class ShopCoffee extends React.Component {
   }
 
   getData() {
-    const url = "./data/coffee.json";
+    const url = './data/coffee.json';
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
         this.setState({ shopItems: data });
       })
-      .catch(error => console.error("Ошибка загрузки данных из файла", url));
+      .catch(error => console.error('Ошибка загрузки данных из файла', url));
   }
 
   render() {
     let itemsArr = [];
     let itemsRow = [];
-    let imgPath = "img/coffee/";
+    let imgPath = 'img/coffee/';
 
     for (let i = 0; i < this.state.shopItems.length; i++) {
       let item = this.state.shopItems[i];
       itemsArr.push(
-        <div className="shop-coffee__item" key={"item" + i}>
+        <div className="shop-coffee__item" key={'item' + i}>
           <div className="shop-coffee__item__inner">
             <div className="row">
               <div className="shop-coffee__item__kg">
@@ -89,7 +89,7 @@ class ShopCoffee extends React.Component {
 
       if ((i > 0 && i % 3 === 0) || i === this.state.shopItems.length - 1) {
         itemsRow.push(
-          <div className="row" key={"row" + i}>
+          <div className="row" key={'row' + i}>
             {itemsArr}
           </div>
         );

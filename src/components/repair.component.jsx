@@ -2,7 +2,8 @@ import React from 'react';
 import './repair.component.scss';
 
 export default class Repair extends React.Component {
-  totalRepaired = Math.round(Date.now() / 1000 / 60 / 60 / 24) - 17700;
+  totalRepaired =
+    Math.round((Date.now() / 1000 / 60 / 60 / 24 - 17903) * 2) + 1010;
   state = {
     typesOfWork: {
       title: '',

@@ -1,25 +1,23 @@
-import React from "react";
-import "./repair.component.scss";
+import React from 'react';
+import './repair.component.scss';
 
 export default class Repair extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      typesOfWork: {
-        title: "",
-        types: []
-      }
-    };
-  }
+  totalRepaired = Math.round(Date.now() / 1000 / 60 / 60 / 24) - 17700;
+  state = {
+    typesOfWork: {
+      title: '',
+      types: []
+    }
+  };
 
   componentDidMount() {
-    const url = "./data/types-of-work.json";
+    const url = './data/types-of-work.json';
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
         this.setState({ typesOfWork: data });
       })
-      .catch(error => console.error("Ошибка загрузки данных из файла", url));
+      .catch(error => console.error('Ошибка загрузки данных из файла', url));
   }
 
   getTypesOfWork() {
@@ -29,6 +27,23 @@ export default class Repair extends React.Component {
         <td>{item.price}</td>
       </tr>
     ));
+  }
+
+  getPlural(counter) {
+    let addLetterIf = '234';
+
+    let baseWord = ' кофемашин';
+    let totalRepairedStrLast = counter.toString().slice(-2);
+    let [beforeLast, last] = totalRepairedStrLast;
+
+    if (beforeLast !== '1') {
+      if (addLetterIf.indexOf(last) !== -1) {
+        baseWord += 'ы';
+      } else if (last === '1') {
+        baseWord += 'а';
+      }
+    }
+    return baseWord;
   }
 
   render() {
@@ -58,6 +73,18 @@ export default class Repair extends React.Component {
                   </li>
                   <li>Мы заранее согласовываем время и стоимость ремонта</li>
                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="main-text">
+              <div className="repair-and-service__title-container">
+                <h2 className="repair-and-service__title-container__title text-center">
+                  Нами уже отремонтировано {this.totalRepaired}
+                  {this.getPlural(this.totalRepaired)}
+                </h2>
               </div>
 
               <table className="main-table">

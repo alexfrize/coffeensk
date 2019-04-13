@@ -30,7 +30,9 @@ class ShopCoffee extends React.Component {
       .then(data => {
         this.setState({ shopItems: data });
       })
-      .catch(error => console.error('Ошибка загрузки данных из файла', url));
+      .catch(() => {
+        throw new Error(`Ошибка загрузки данных из файла ${url}`);
+      });
   }
 
   render() {

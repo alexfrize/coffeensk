@@ -1,6 +1,6 @@
-import React from "react";
-import SendMessageForm from "./send-message.component.jsx";
-import "./send-message.component.scss";
+import React from 'react';
+import SendMessageForm from './send-message.component.jsx';
+import './send-message.component.scss';
 
 const SendMessage = props => {
   return (

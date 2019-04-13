@@ -1,4 +1,4 @@
-@import "../scss/style-import";
+@import '../scss/style-import';
 
 /* ============= Кнопка, ведущая в корзину товаров ============= */
 
@@ -30,7 +30,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  background: $brown url($imgpath+"to-cart-button__img.png") no-repeat;
+  background: $brown url($imgpath+'to-cart-button__img.png') no-repeat;
   background-size: contain;
   width: 70px;
   height: 70px;

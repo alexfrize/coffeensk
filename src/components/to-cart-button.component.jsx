@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import { connect } from "react-redux";
-import "./to-cart-button.component.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { connect } from 'react-redux';
+import './to-cart-button.component.scss';
 
 class ToCartButton extends React.Component {
   getItemsInCart() {

@@ -1,51 +1,51 @@
 @import '../scss/style-import';
 
- /* ============= Оформление заказа ============= */
- .checkout {
-	.checkout__title-container {
-		.checkout__title-container__title {
-			@extend .h2;
-		}
-	}
+/* ============= Оформление заказа ============= */
+.checkout {
+  .checkout__title-container {
+    .checkout__title-container__title {
+      @extend .h2;
+    }
+  }
 
-	.checkout__checkout-button-container {
-		margin-top: 30px;
-		text-align: right;
-		.checkout__checkout-button {
-			@extend .main-button;
-		}
-	}	
+  .checkout__checkout-button-container {
+    margin-top: 30px;
+    text-align: right;
+    .checkout__checkout-button {
+      @extend .main-button;
+    }
+  }
 
-	.checkout__form {
-		.checkout__form__input {
-			@extend .form-control;
-			@extend %transition;
-			border-radius: 0;
-			border: 1px solid $brown;
-			margin-bottom: 10px;
-			background: transparent;
-			padding: 20px 10px;
-			width: 100%;
-			font: {
-				family: $opensans;
-				size: 18px;
-				weight: $regular;
-			}
-			color: $brown;
+  .checkout__form {
+    .checkout__form__input {
+      @extend .form-control;
+      @extend %transition;
+      border-radius: 0;
+      border: 1px solid $brown;
+      margin-bottom: 10px;
+      background: transparent;
+      padding: 20px 10px;
+      width: 100%;
+      font: {
+        family: $opensans;
+        size: 18px;
+        weight: $regular;
+      }
+      color: $brown;
 
-			&::placeholder {
-				@extend %transition;
-				color: darken($lbrown,30%);
-			}
-			&:focus {
-				border-color: rgba(73, 20, 4, 0.8);
-				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(73, 20, 4, 0.2);
-				outline: 0 none;
-				&::placeholder {
-					color: darken($lbrown,10%);
-				}
-			}
-		}
-		
-	}
+      &::placeholder {
+        @extend %transition;
+        color: darken($lbrown, 30%);
+      }
+      &:focus {
+        border-color: rgba(73, 20, 4, 0.8);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+          0 0 8px rgba(73, 20, 4, 0.2);
+        outline: 0 none;
+        &::placeholder {
+          color: darken($lbrown, 10%);
+        }
+      }
+    }
+  }
 }

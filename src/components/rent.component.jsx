@@ -1,5 +1,5 @@
-import React from "react";
-import "./rent.component.scss";
+import React from 'react';
+import './rent.component.scss';
 
 const Rent = () => {
   return (

@@ -1,110 +1,109 @@
 * {
-	outline: 0 !important;
+  outline: 0 !important;
 }
 
 body {
-	background: $bgbrown;
+  background: $bgbrown;
 }
 
 p {
-	font-size: 18px;
-	color: $brown;
+  font-size: 18px;
+  color: $brown;
 }
 
 .h2 {
-	margin-top: 60px;
-	font: {
-		family: $bebas;
-		size: 36px;
-	}
-	color: $brown;
+  margin-top: 60px;
+  font: {
+    family: $bebas;
+    size: 36px;
+  }
+  color: $brown;
 }
 
 /* ========  Глобальные стили текста, списков и таблиц на страницах ======== */
 .main-text {
-	font: {
-		family: $opensans;
-		size: 18px;
-		weight: $regular;
-	}
-	color: $brown;
+  font: {
+    family: $opensans;
+    size: 18px;
+    weight: $regular;
+  }
+  color: $brown;
 }
 
 .main-text_bold {
-	font-weight: $bold;
+  font-weight: $bold;
 }
 .main-text_small {
-	font-size: 13px;
-	color: darken($lbrown, 40%);
-
+  font-size: 13px;
+  color: darken($lbrown, 40%);
 }
 
 .main-table {
-	margin-top: 30px;
-	margin-bottom: 30px;
-	display: table;
-	width: 100%;
-	border: 1px dashed $brown;
-	th {
-		text-align: center;
-		padding: 10px;
-		display: table-cell;
-		vertical-align: middle;
-		border: 1px solid $brown;
-		font: {
-			family: $opensans;
-			size: 16px;
-			weight: $bold;
-		}
-		color: white;		
-		background: $brown;
-	}	
-	td {
-		
-		display: table-cell;
-		vertical-align: middle;
-		border: none;
-		padding: 5px;
-		font: {
-			family: $opensans;
-			size: 14px;
-			weight: $regular;
-		}
-		@include breakpoint($xsSize) {
-			padding: 10px;
-			font-size: 16px;
-		}
-		color: $brown;		
-	}
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: table;
+  width: 100%;
+  border: 1px dashed $brown;
+  th {
+    text-align: center;
+    padding: 10px;
+    display: table-cell;
+    vertical-align: middle;
+    border: 1px solid $brown;
+    font: {
+      family: $opensans;
+      size: 16px;
+      weight: $bold;
+    }
+    color: white;
+    background: $brown;
+  }
+  td {
+    display: table-cell;
+    vertical-align: middle;
+    border: none;
+    padding: 5px;
+    font: {
+      family: $opensans;
+      size: 14px;
+      weight: $regular;
+    }
+    @include breakpoint($xsSize) {
+      padding: 10px;
+      font-size: 16px;
+    }
+    color: $brown;
+  }
 
-
-	td:first-child {
-		border-right: 1px dashed $brown;	
-	}
-	td:nth-child(2) {
-		text-align: center;
-		width: 30%;
-	}
-	tr:nth-child(2n+1) {
-		background: $lbrown;
-	}
+  td:first-child {
+    border-right: 1px dashed $brown;
+  }
+  td:nth-child(2) {
+    text-align: center;
+    width: 30%;
+  }
+  tr:nth-child(2n + 1) {
+    background: $lbrown;
+  }
 }
 
 .main-button-container {
-	@extend .text-center;
+  @extend .text-center;
 }
 .main-button {
-	@extend .btn, %transition;
-	color: white;
-	background: $brown;
-	padding: 10px 20px;
-	font: {
-		family: $opensans;
-		size: 18px;
-		weight: $semibold;
-	}
-	&:hover, &:focus, &:active {
-		color: $brown;
-		background: $lbrown;
-	}
+  @extend .btn, %transition;
+  color: white;
+  background: $brown;
+  padding: 10px 20px;
+  font: {
+    family: $opensans;
+    size: 18px;
+    weight: $semibold;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: $brown;
+    background: $lbrown;
+  }
 }

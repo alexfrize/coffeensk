@@ -2,189 +2,197 @@
 
 /* ============= Блок с картинками-ссылками ============= */
 .footer__piclinks {
-	.footer__piclinks__item {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		@extend .col-sm-4;
-		@extend %transition;
+  .footer__piclinks__item {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    @extend .col-sm-4;
+    @extend %transition;
 
-		.footer__piclinks__item__inner {
-			@extend .center-block;
-			width: 80%;
-			height: 150px;
+    .footer__piclinks__item__inner {
+      @extend .center-block;
+      width: 80%;
+      height: 150px;
 
-			@include breakpoint($xsSize) {
-				width: 370px;
-				height: 250px;
-			}	
+      @include breakpoint($xsSize) {
+        width: 370px;
+        height: 250px;
+      }
 
-			@include breakpoint($smSize) {
-				width: 100%;
-				height: 150px;
-			}			
-			@include breakpoint($mdSize) {
-				height: 197px;
-			}		
-			@include breakpoint($lgSize) {
-				height: 250px;
-			}
+      @include breakpoint($smSize) {
+        width: 100%;
+        height: 150px;
+      }
+      @include breakpoint($mdSize) {
+        height: 197px;
+      }
+      @include breakpoint($lgSize) {
+        height: 250px;
+      }
 
-			.footer__piclinks__item__inner__text {
-				@extend .text-center;
-				@extend %transition;
-				background: rgba(255,255,255,0.8);
-				color: $brown;
-				font: {
-					family: $opensans;
-					size: 16px;
-					weight: $semibold;
-				}
-				line-height: 2em;
-				@include breakpoint($xsSize) {
-					font-size: 24px;
-					line-height: 2em;
-				}					
-				@include breakpoint($smSize) {
-					font-size: 16px;
-					line-height: 3em;
-				}				
-				@include breakpoint($lgSize) {
-					font-size: 24px;
-					line-height: 2.5em;
-				}
-				
+      .footer__piclinks__item__inner__text {
+        @extend .text-center;
+        @extend %transition;
+        background: rgba(255, 255, 255, 0.8);
+        color: $brown;
+        font: {
+          family: $opensans;
+          size: 16px;
+          weight: $semibold;
+        }
+        line-height: 2em;
+        @include breakpoint($xsSize) {
+          font-size: 24px;
+          line-height: 2em;
+        }
+        @include breakpoint($smSize) {
+          font-size: 16px;
+          line-height: 3em;
+        }
+        @include breakpoint($lgSize) {
+          font-size: 24px;
+          line-height: 2.5em;
+        }
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+        .footer__piclinks__item__inner__text {
+          background: rgba(255, 255, 255, 0.9);
+          line-height: 150px;
+          @include breakpoint($xsSize) {
+            line-height: 250px;
+          }
+          @include breakpoint($smSize) {
+            line-height: 150px;
+          }
+          @include breakpoint($mdSize) {
+            line-height: 197px;
+          }
 
-			}
-			&:hover, &:focus, &:active {
-				text-decoration : none;
-				.footer__piclinks__item__inner__text {
-					background: rgba(255,255,255,0.9);
-					line-height: 150px;					
-					@include breakpoint($xsSize) {
-						line-height: 250px;
-					}					
-					@include breakpoint($smSize) {
-						line-height: 150px;
-					}
-					@include breakpoint($mdSize) {
-						line-height: 197px;
-					}	
-
-					@include breakpoint($lgSize) {
-						line-height: 250px;
-					}				
-				}
-			}			
-		}
-		.footer__piclinks__item__inner__service {
-			background: $lbrown url($imgpath+'footer__piclinks__item__inner__service.jpg') center no-repeat;
-			background-size: cover;
-		}
-		.footer__piclinks__item__inner__rent {
-			background: $lbrown url($imgpath+'footer__piclinks__item__inner__rent.jpg') center no-repeat;
-			background-size: cover;
-		}
-		.footer__piclinks__item__inner__coffee {
-			background: $lbrown url($imgpath+'footer__piclinks__item__inner__coffee.jpg') center no-repeat;
-			background-size: cover;
-		}
-
-
-	}
+          @include breakpoint($lgSize) {
+            line-height: 250px;
+          }
+        }
+      }
+    }
+    .footer__piclinks__item__inner__service {
+      background: $lbrown
+        url($imgpath+'footer__piclinks__item__inner__service.jpg') center
+        no-repeat;
+      background-size: cover;
+    }
+    .footer__piclinks__item__inner__rent {
+      background: $lbrown
+        url($imgpath+'footer__piclinks__item__inner__rent.jpg') center no-repeat;
+      background-size: cover;
+    }
+    .footer__piclinks__item__inner__coffee {
+      background: $lbrown
+        url($imgpath+'footer__piclinks__item__inner__coffee.jpg') center
+        no-repeat;
+      background-size: cover;
+    }
+  }
 }
 
 /*============= Блок с нижним меню и контактами ============= */
 .footer__menu-and-contacts {
-	.container {
-		background: $lbrown;
-		padding: 20px;
-		.footer__menu-and-contacts__inner {
-			@extend .center-block;
-			padding: 20px;
-			width: 90%;
-			@include breakpoint($lgSize) {
-				width: 780px;
-			}
-			border-top: 1px solid $brown;
-			border-bottom: 1px solid $brown;
-			.footer__menu-and-contacts__inner__menu {
-				@extend .hidden-xs, .col-xs-push-0, .col-sm-6, .col-md-4;
-				margin-top: 22px;
-				ul {
-					list-style: none;
-					padding: 0;
-					li > a, li > Link {
-						@extend %transition;
-						color: $brown;
-						text-decoration: none;
-						text-transform: uppercase;
-						font: {
-							family: $opensans;
-							size: 12px;
-						}
-						&:hover {
-							color: darken($lbrown,20%);
-							cursor: pointer;
-						}
-					}
-				}
-			}
-			.footer__menu-and-contacts__inner__schedule {
-				@extend .col-xs-12, .col-xs-push-0, .col-sm-6, .col-md-4, .col-md-push-4;
-				@include breakpoint ($smSize) {
-					margin-top: 50px;
-				}
-				.footer__menu-and-contacts__inner__schedule__text {
-					text-align: center;
-					font: {
-						family: $opensans;
-						size: 16px;
-						weight: $regular;
-					}
-					color: $brown;
-					text-transform: uppercase;					
-					@include breakpoint($smSize) {
-						text-align: right;
-						font-size: 12px;
-					}					
-				}
-			}
+  .container {
+    background: $lbrown;
+    padding: 20px;
+    .footer__menu-and-contacts__inner {
+      @extend .center-block;
+      padding: 20px;
+      width: 90%;
+      @include breakpoint($lgSize) {
+        width: 780px;
+      }
+      border-top: 1px solid $brown;
+      border-bottom: 1px solid $brown;
+      .footer__menu-and-contacts__inner__menu {
+        @extend .hidden-xs, .col-xs-push-0, .col-sm-6, .col-md-4;
+        margin-top: 22px;
+        ul {
+          list-style: none;
+          padding: 0;
+          li > a,
+          li > link {
+            @extend %transition;
+            color: $brown;
+            text-decoration: none;
+            text-transform: uppercase;
+            font: {
+              family: $opensans;
+              size: 12px;
+            }
+            &:hover {
+              color: darken($lbrown, 20%);
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .footer__menu-and-contacts__inner__schedule {
+        @extend .col-xs-12,
+          .col-xs-push-0,
+          .col-sm-6,
+          .col-md-4,
+          .col-md-push-4;
+        @include breakpoint($smSize) {
+          margin-top: 50px;
+        }
+        .footer__menu-and-contacts__inner__schedule__text {
+          text-align: center;
+          font: {
+            family: $opensans;
+            size: 16px;
+            weight: $regular;
+          }
+          color: $brown;
+          text-transform: uppercase;
+          @include breakpoint($smSize) {
+            text-align: right;
+            font-size: 12px;
+          }
+        }
+      }
 
+      .footer__menu-and-contacts__inner__tel-and-address {
+        @extend .col-xs-12,
+          .col-xs-push-0,
+          .col-sm-12,
+          .col-md-4,
+          .col-md-pull-4;
 
-
-
-			.footer__menu-and-contacts__inner__tel-and-address {
-				@extend .col-xs-12, .col-xs-push-0, .col-sm-12, .col-md-4, .col-md-pull-4;
-				
-				.footer__menu-and-contacts__inner__tel-and-address__logo {
-					@extend .center-block, .img-responsive;
-					max-width: 150px;
-				}				
-				.footer__menu-and-contacts__inner__tel-and-address__tel {
-					@extend .text-center;
-					font: {
-						family: $bebas;
-						size: 26px;
-						weight: $regular;
-					}
-					color: $brown;					
-				}
-				.footer__menu-and-contacts__inner__tel-and-address__addrtext {
-					@extend .text-center;
-					font: {
-						family: $opensans;
-						size: 12px;
-						weight: $regular;
-					}
-					line-height: 1.1em;
-					color: $brown;
-					text-transform: uppercase;
-					span {
-						display:block;
-					}
-				}
-			}			
-		}
-	}
-
+        .footer__menu-and-contacts__inner__tel-and-address__logo {
+          @extend .center-block, .img-responsive;
+          max-width: 150px;
+        }
+        .footer__menu-and-contacts__inner__tel-and-address__tel {
+          @extend .text-center;
+          font: {
+            family: $bebas;
+            size: 26px;
+            weight: $regular;
+          }
+          color: $brown;
+        }
+        .footer__menu-and-contacts__inner__tel-and-address__addrtext {
+          @extend .text-center;
+          font: {
+            family: $opensans;
+            size: 12px;
+            weight: $regular;
+          }
+          line-height: 1.1em;
+          color: $brown;
+          text-transform: uppercase;
+          span {
+            display: block;
+          }
+        }
+      }
+    }
+  }
 }

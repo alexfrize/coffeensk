@@ -1,4 +1,4 @@
-import { ADD_TO_CARD, CHANGE_QUANTITY, DELETE_FROM_CART } from "../constants";
+import { ADD_TO_CARD, CHANGE_QUANTITY, DELETE_FROM_CART } from '../constants';
 
 export const action__addToCart = item => {
   return {

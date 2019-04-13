@@ -2,9 +2,9 @@
 
 /* ============= Расходные материалы ============= */
 .consumables {
-	.consumables__title-container {
-		.consumables__title-container__title {
-			@extend .h2;
-		}
-	}	
+  .consumables__title-container {
+    .consumables__title-container__title {
+      @extend .h2;
+    }
+  }
 }

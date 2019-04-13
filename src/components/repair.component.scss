@@ -2,9 +2,41 @@
 
 /* ============= Ремонт и обслуживание ============= */
 .repair-and-service {
-	.repair-and-service__title-container {
-		.repair-and-service__title-container__title {
-			@extend .h2;
-		}
-	}
+  .repair-and-service__title-container {
+    .repair-and-service__title-container__title {
+      @extend .h2;
+
+      &-accented {
+        display: block;
+        margin: auto;
+
+        border-radius: 50px;
+        color: white;
+        background: $brown;
+        padding: 10px 30px;
+        font-size: 26px;
+        width: 90%;
+
+        @include breakpoint($xsSize) {
+          font-size: 36px;
+          width: 70%;
+        }
+
+        @include breakpoint($smSize) {
+          font-size: 48px;
+          width: 60%;
+        }
+
+        @include breakpoint($mdSize) {
+          font-size: 48px;
+          width: 50%;
+        }
+
+        @include breakpoint($lgSize) {
+          font-size: 48px;
+          width: 40%;
+        }
+      }
+    }
+  }
 }

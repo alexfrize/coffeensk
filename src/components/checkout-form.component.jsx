@@ -1,13 +1,13 @@
-import React from "react";
-import "./checkout.component.scss";
+import React from 'react';
+import './checkout.component.scss';
 
 export default class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      customerName: "",
-      customerTel: "",
-      customerAddr: ""
+      customerName: '',
+      customerTel: '',
+      customerAddr: ''
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleTelChange = this.handleTelChange.bind(this);
@@ -31,7 +31,7 @@ export default class CheckoutForm extends React.Component {
   handleTelChange(event) {
     var tel = event.target.value;
     var newState = tel.match(/^\+[0-9-]*|^[0-9]+[0-9-]*/g);
-    newState = newState !== null ? newState.join("") : "";
+    newState = newState !== null ? newState.join('') : '';
     this.setState({ customerTel: newState });
     this.updateCheckoutPossibility();
   }
@@ -45,10 +45,10 @@ export default class CheckoutForm extends React.Component {
     console.log(this.state.customerAddr);
     console.log(this.props.itemsInCart);
     event.preventDefault();
-    fetch("/php/send-order.php", {
-      method: "POST",
+    fetch('/php/send-order.php', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         customerName: this.state.customerName,
@@ -62,18 +62,20 @@ export default class CheckoutForm extends React.Component {
         console.log(response.status);
         if (response.status === 200 || response.status === 0) {
           this.setState({
-            customerName: "",
-            customerTel: "",
-            customerAddr: ""
+            customerName: '',
+            customerTel: '',
+            customerAddr: ''
           });
-          alert("Ваша заявка была отправлена. Скоро с Вами свяжутся.");
+          alert('Ваша заявка была отправлена. Скоро с Вами свяжутся.');
         } else {
           alert(
-            "При отправке данных возникла ошибка. Пожалуйста, повторите попытку чуть позже, либо свяжитесь с нами по телефону."
+            'При отправке данных возникла ошибка. Пожалуйста, повторите попытку чуть позже, либо свяжитесь с нами по телефону.'
           );
         }
       })
-      .catch(error => console.error("error", error));
+      .catch(error => {
+        throw new Error(`Error ${error}`);
+      });
   }
 
   render() {

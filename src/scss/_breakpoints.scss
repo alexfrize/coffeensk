@@ -6,8 +6,7 @@ $lgSize: 1200px;
 
 // breakpoint mixins
 @mixin breakpoint($bpoint) {
-	@media (min-width: $bpoint) { 
-		@content; 
-	}
+  @media (min-width: $bpoint) {
+    @content;
+  }
 }
-

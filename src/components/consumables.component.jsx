@@ -1,5 +1,5 @@
-import React from "react";
-import "./consumables.component.scss";
+import React from 'react';
+import './consumables.component.scss';
 
 export default class Consumables extends React.Component {
   render() {

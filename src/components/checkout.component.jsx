@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import CheckoutForm from "./checkout-form.component.jsx";
-import "./checkout.component.scss";
+import React from 'react';
+import { connect } from 'react-redux';
+import CheckoutForm from './checkout-form.component.jsx';
+import './checkout.component.scss';
 
 class Checkout extends React.Component {
   constructor(props) {

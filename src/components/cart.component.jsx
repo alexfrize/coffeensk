@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { action__changeQantity, action__deleteItemFromCart } from "../actions";
-import "./cart.component.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { action__changeQantity, action__deleteItemFromCart } from '../actions';
+import './cart.component.scss';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -19,9 +19,9 @@ class Cart extends React.Component {
 
   handleInput(i, event) {
     let inputData = event.target.value;
-    inputData = inputData.replace(/[^0-9]+/gi, "");
+    inputData = inputData.replace(/[^0-9]+/gi, '');
 
-    if (inputData !== "") {
+    if (inputData !== '') {
       inputData = Number(inputData);
       if (inputData !== 0 && inputData <= 99) {
         this.props.action__changeQantity(i, inputData);
@@ -45,7 +45,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    var imgPath = "img/coffee/";
+    var imgPath = 'img/coffee/';
     var itemsInTable;
 
     var itemsInCart = this.props.itemsInCart;

@@ -18,7 +18,9 @@ export default class Repair extends React.Component {
       .then(data => {
         this.setState({ typesOfWork: data });
       })
-      .catch(error => console.error('Ошибка загрузки данных из файла', url));
+      .catch(() => {
+        throw new Error(`Ошибка загрузки данных из файла ${url}`);
+      });
   }
 
   getTypesOfWork() {
@@ -83,8 +85,11 @@ export default class Repair extends React.Component {
             <div className="main-text">
               <div className="repair-and-service__title-container">
                 <h2 className="repair-and-service__title-container__title text-center">
-                  Нами уже отремонтировано {this.totalRepaired}
-                  {this.getPlural(this.totalRepaired)}
+                  Нами уже отремонтировано
+                  <span className="repair-and-service__title-container__title-accented text-center">
+                    {this.totalRepaired}
+                    {this.getPlural(this.totalRepaired)}
+                  </span>
                 </h2>
               </div>
 

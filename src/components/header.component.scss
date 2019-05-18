@@ -4,19 +4,29 @@
   .header__logo {
     .header__logo__img {
       @extend .center-block, .img-responsive;
-      max-height: 120px;
+      max-height: 40px;
+
+      @include breakpoint($xsSize) {
+        max-height: 120px;
+      }
     }
   }
 
   .header__title {
     .header__title__h1 {
-      margin-top: 30px;
+      margin-top: 10px;
       @extend .text-center;
       font: {
         family: $bebas;
-        size: 42px;
+        size: 22px;
       }
       color: $brown;
+
+      @include breakpoint($xsSize) {
+        margin-top: 30px;
+        font-size: 42px;
+      }
+
       @include breakpoint($lgSize) {
         font-size: 48px;
       }
@@ -25,17 +35,26 @@
 
   .header__contacts {
     .header__contacts__address {
-      margin-top: 20px;
+      margin-top: 10px;
+
+      @include breakpoint($xsSize) {
+        margin-top: 20px;
+      }
+
       .header__contacts__address__text {
         @extend .text-center;
         font: {
           family: $opensans;
-          size: 18px;
+          size: 14px;
           weight: $bold;
         }
         color: $green;
         margin-bottom: 0;
         line-height: 1.1em;
+
+        @include breakpoint($xsSize) {
+          font-size: 18px;
+        }
       }
     }
 
@@ -45,7 +64,11 @@
         color: $brown;
         font: {
           family: $bebas;
-          size: 28px;
+          size: 22px;
+        }
+
+        @include breakpoint($xsSize) {
+          font-size: 28px;
         }
       }
     }
@@ -87,14 +110,16 @@
     }
     ul > li > a {
       @extend %transition;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
       font: {
         family: $opensans;
         size: 14px;
         weight: $extrabold;
       }
       @include breakpoint($smSize) {
+        padding-top: 20px;
+        padding-bottom: 20px;
         padding-left: 0px;
         padding-right: 0px;
         font-size: 11px;

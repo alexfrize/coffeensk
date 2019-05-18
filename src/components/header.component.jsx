@@ -4,6 +4,10 @@ import logo from '../img/logo.png';
 import './header.component.scss';
 
 export default class Header extends React.Component {
+  collapseOrNot() {
+    return window.innerWidth < 768 ? 'collapse' : null;
+  }
+
   render() {
     return (
       <header className="header">
@@ -20,9 +24,7 @@ export default class Header extends React.Component {
             <div className="header__contacts col-md-3">
               <div className="header__contacts__address">
                 <p className="header__contacts__address__text">
-                  г. Новосибирск
-                  <br />
-                  Орджоникидзе, 47
+                  г. Новосибирск, <span>Орджоникидзе, 47</span>
                 </p>
               </div>
               <div className="header__contacts__phone">
@@ -53,19 +55,49 @@ export default class Header extends React.Component {
               <div className="header__menu__list collapse navbar-collapse">
                 <ul className="nav nav-pills nav-justified">
                   <li>
-                    <Link to="/">Кофе</Link>
+                    <Link
+                      to="/"
+                      data-toggle={this.collapseOrNot()}
+                      data-target=".header__menu__list"
+                    >
+                      Кофе
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/repair">Ремонт и обслуживание</Link>
+                    <Link
+                      to="/repair"
+                      data-toggle={this.collapseOrNot()}
+                      data-target=".header__menu__list"
+                    >
+                      Ремонт и обслуживание
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/consumables">Расходные материалы</Link>
+                    <Link
+                      to="/consumables"
+                      data-toggle={this.collapseOrNot()}
+                      data-target=".header__menu__list"
+                    >
+                      Расходные материалы
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/rent">Аренда кофемашины</Link>
+                    <Link
+                      to="/rent"
+                      data-toggle={this.collapseOrNot()}
+                      data-target=".header__menu__list"
+                    >
+                      Аренда кофемашины
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/contacts">Контакты</Link>
+                    <Link
+                      to="/contacts"
+                      data-toggle={this.collapseOrNot()}
+                      data-target=".header__menu__list"
+                    >
+                      Контакты
+                    </Link>
                   </li>
                 </ul>
               </div>

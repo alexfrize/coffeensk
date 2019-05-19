@@ -3,24 +3,19 @@ import { ADD_TO_CARD, CHANGE_QUANTITY, DELETE_FROM_CART } from '../constants';
 export const mainAppReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_TO_CARD:
-      let newSelectedItem = action.payload;
-      let newStateArray = [...state];
-
       // Проверяем, есть ли уже такой товар в корзине
-      if (
-        newStateArray.filter(el => el.title === newSelectedItem.title)
-          .length === 0
-      ) {
-        newSelectedItem.quantity = 1;
-        newStateArray.push(newSelectedItem);
-      } else {
-        let foundItemAtIndex = newStateArray
-          .map(el => el.title)
-          .indexOf(newSelectedItem.title);
-        newStateArray[foundItemAtIndex].quantity++;
-      }
+      let foundItemAtIndex = state
+        .map(el => el.title)
+        .indexOf(action.payload.title);
 
-      return newStateArray;
+      if (foundItemAtIndex === -1) {
+        return [...state, { ...action.payload, quantity: 1 }];
+      }
+      return [
+        ...state.slice(0, foundItemAtIndex),
+        { ...action.payload, quantity: state[foundItemAtIndex].quantity + 1 },
+        ...state.slice(foundItemAtIndex + 1)
+      ];
 
     /* ================================================================= */
 

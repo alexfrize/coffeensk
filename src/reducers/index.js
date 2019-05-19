@@ -34,7 +34,11 @@ export const mainAppReducer = (state = [], action) => {
       let newQuantityStateArray = [...state];
       newQuantityStateArray[itemIndex].quantity = newQuantity;
 
-      return newQuantityStateArray;
+      return [
+        ...state.slice(0, itemIndex),
+        { ...state[itemIndex], quantity: newQuantity },
+        ...state.slice(itemIndex + 1)
+      ];
 
     default:
       return state;

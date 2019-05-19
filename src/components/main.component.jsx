@@ -28,7 +28,7 @@ export class Main extends React.Component {
   }
 
   onRouteChanged() {
-    console.log('ROUTE CHANGED');
+    window.scrollTo(0, 0);
   }
 
   getItemsInCart(itemsInCart) {

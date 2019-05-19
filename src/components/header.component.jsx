@@ -52,7 +52,7 @@ export default class Header extends React.Component {
                   <span className="icon-bar" />
                 </button>
               </div>
-              <div className="header__menu__list collapse navbar-collapse">
+              <div className="header__menu__list navbar-collapse collapse in">
                 <ul className="nav nav-pills nav-justified">
                   <li>
                     <Link

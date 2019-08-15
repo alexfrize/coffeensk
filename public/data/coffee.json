@@ -33,5 +33,12 @@
     "weight": "1 кг",
     "price": "1100",
     "image": "coffee_alta_roma_verde.jpg"
+  },
+  {
+    "title": "Alta Roma Intenso",
+    "description": "Арабика-80%, Робуста-20%",
+    "weight": "250 г",
+    "price": "290",
+    "image": "coffee_alta_roma_intenso.jpg"
   }
 ]

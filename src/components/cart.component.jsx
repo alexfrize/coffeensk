@@ -44,22 +44,27 @@ class Cart extends React.Component {
     this.props.action__changeQantity(i, newQuantity);
   }
 
-  checkPromo(item) {
+  getPromoName(item) {
+    return item.promotionType ? (
+      <span className="promo-text"> (Акция: {item.promotionType})</span>
+    ) : (
+      ''
+    );
+  }
+
+  getPromoQuantity(item) {
     switch (item.promotionType) {
       case '6+1': {
         if (Number(item.quantity) >= Number(item.promotionFrom)) {
           return (
             <span>
-              Акция: 6+1
-              <br />+
-              {Math.floor(
-                Number(item.quantity) / Number(item.promotionFrom)
-              )}{' '}
-              бесплатно
+              +{Math.floor(Number(item.quantity) / Number(item.promotionFrom))}
             </span>
           );
         }
+        break;
       }
+
       default:
         return '';
     }
@@ -87,11 +92,14 @@ class Cart extends React.Component {
         totalPrice += Number(item.price) * item.quantity;
         return (
           <tr key={i}>
-            <td>{item.title}</td>
             <td>
+              {item.title}
+              {this.getPromoName(item)}
+            </td>
+            <td className="td-item-image">
               <img alt="Item" src={imgPath + item.image} />
             </td>
-            <td>
+            <td className="td-quantity">
               <input
                 onChange={this.handleInput.bind(this, i)}
                 className="cart__table__input"
@@ -111,10 +119,12 @@ class Cart extends React.Component {
                 -
               </button>
             </td>
-            <td>{this.checkPromo(item)}</td>
-            <td>{item.price * this.props.itemsInCart[i].quantity} руб.</td>
+            <td className="td-promo-quantity">{this.getPromoQuantity(item)}</td>
+            <td className="td-price">
+              {item.price * this.props.itemsInCart[i].quantity} руб.
+            </td>
 
-            <td>
+            <td className="td-delete">
               <button
                 className="cart__table__delete-button"
                 onClick={() => this.deleteItemFromCart(i)}
@@ -143,9 +153,9 @@ class Cart extends React.Component {
                   </tr>
                   {itemsInTable}
                   <tr>
-                    <td colSpan="3" />
-
-                    <td>Итого:</td>
+                    <td colSpan="4" className="td-total">
+                      Итого:
+                    </td>
                     <td>{totalPrice} руб.</td>
                     <td />
                   </tr>

@@ -12,11 +12,13 @@
     @extend .main-table;
     min-height: 80px;
 
-    td:first-child {
+    .promo-text {
+      color: $green;
     }
-    td:nth-child(2) {
+
+    .td-item-image {
       text-align: center;
-      width: 10%;
+      width: 10% !important;
       img {
         width: 50px;
         height: 50px;
@@ -27,21 +29,25 @@
         }
       }
     }
-    td:nth-child(3) {
+
+    .td-quantity {
       text-align: center;
       padding-bottom: 0;
       width: 10%;
     }
-    td:nth-child(4) {
+
+    .td-promo-quantity {
       text-align: center;
       color: $green;
-      width: 15%;
+      width: 5%;
     }
-    td:nth-child(5) {
+
+    .td-price {
       text-align: center;
       width: 10%;
     }
-    td:nth-child(6) {
+
+    .td-delete {
       text-align: center;
       width: 10%;
     }
@@ -50,12 +56,17 @@
       border-right: 1px dashed $brown;
     }
 
+    .td-total {
+      text-align: right;
+    }
+
     tr:last-child {
       td {
         border-top: 1px solid $brown;
         font-weight: $bold;
       }
     }
+
     .cart__table__delete-button {
       @extend .main-button;
       padding: 5px 8px;
@@ -63,6 +74,7 @@
       background: transparent;
       color: $brown;
     }
+
     ::selection {
       background: $brown;
       color: $bgbrown;
@@ -72,6 +84,7 @@
       background: $brown;
       color: $bgbrown;
     }
+
     input[type='number']::-webkit-inner-spin-button,
     input[type='number']::-webkit-outer-spin-button {
       -webkit-appearance: none;
@@ -81,6 +94,7 @@
     input[type='number'] {
       -moz-appearance: textfield;
     }
+
     .cart__table__button-add-sub {
       float: left;
       @extend .main-button;
@@ -92,10 +106,12 @@
       color: $brown;
       border: 1px solid $brown;
     }
+
     .cart__table__button-add {
       @extend .cart__table__button-add-sub;
       border-radius: 0 5px 0px 0;
     }
+
     .cart__table__button-sub {
       @extend .cart__table__button-add-sub;
       border-radius: 0 0 5px 0px;

@@ -4,6 +4,8 @@
     "description": "Робуста-75%, Арабика-25%",
     "weight": "1 кг",
     "price": "690",
+    "promotionType": "6+1",
+    "promotionFrom": "6",
     "image": "coffee_alta_roma_mocha.jpg"
   },
   {

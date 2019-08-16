@@ -44,6 +44,27 @@ class Cart extends React.Component {
     this.props.action__changeQantity(i, newQuantity);
   }
 
+  checkPromo(item) {
+    switch (item.promotionType) {
+      case '6+1': {
+        if (Number(item.quantity) >= Number(item.promotionFrom)) {
+          return (
+            <span>
+              Акция: 6+1
+              <br />+
+              {Math.floor(
+                Number(item.quantity) / Number(item.promotionFrom)
+              )}{' '}
+              бесплатно
+            </span>
+          );
+        }
+      }
+      default:
+        return '';
+    }
+  }
+
   render() {
     var imgPath = 'img/coffee/';
     var itemsInTable;
@@ -55,13 +76,14 @@ class Cart extends React.Component {
       this.canCheckout = false;
       itemsInTable = (
         <tr>
-          <td colSpan="5">Ваша корзина пуста</td>
+          <td colSpan="6">Ваша корзина пуста</td>
         </tr>
       );
     } else {
       totalPrice = 0;
       this.canCheckout = true;
       itemsInTable = itemsInCart.map((item, i) => {
+        console.log('item', item);
         totalPrice += Number(item.price) * item.quantity;
         return (
           <tr key={i}>
@@ -89,7 +111,9 @@ class Cart extends React.Component {
                 -
               </button>
             </td>
+            <td>{this.checkPromo(item)}</td>
             <td>{item.price * this.props.itemsInCart[i].quantity} руб.</td>
+
             <td>
               <button
                 className="cart__table__delete-button"
@@ -115,12 +139,12 @@ class Cart extends React.Component {
               <table className="cart__table">
                 <tbody>
                   <tr>
-                    <th colSpan="5">Список товаров</th>
+                    <th colSpan="6">Список товаров</th>
                   </tr>
                   {itemsInTable}
                   <tr>
-                    <td />
-                    <td />
+                    <td colSpan="3" />
+
                     <td>Итого:</td>
                     <td>{totalPrice} руб.</td>
                     <td />

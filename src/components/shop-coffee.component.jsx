@@ -45,6 +45,11 @@ class ShopCoffee extends React.Component {
       itemsArr.push(
         <div className="shop-coffee__item" key={'item' + i}>
           <div className="shop-coffee__item__inner">
+            {item.promotionType && (
+              <div className="shop-coffee__promo">
+                Акция: <span className="promo-type">{item.promotionType}</span>
+              </div>
+            )}
             <div className="row">
               <div className="shop-coffee__item__kg">
                 <p className="shop-coffee__item__kg__text">{item.weight}</p>

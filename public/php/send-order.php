@@ -27,7 +27,8 @@
     file_put_contents('testfile.txt', $info, FILE_APPEND);
 
     $to = "alexander.frize@gmail.com, ";
-    $to .= "2130675@bk.ru" ;
+		$to .= "2130675@bk.ru, ";
+		$to .= "info@coffeensk.com";
 
     $subject = "CoffeeNsk - Заявка с сайта";
 	

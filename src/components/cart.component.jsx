@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { action__changeQantity, action__deleteItemFromCart } from '../actions';
+import { getPromoQuantityString } from './get-promo-quantity-string';
 import './cart.component.scss';
 
 class Cart extends React.Component {
@@ -52,24 +53,6 @@ class Cart extends React.Component {
     );
   }
 
-  getPromoQuantity(item) {
-    switch (item.promotionType) {
-      case '6+1': {
-        if (Number(item.quantity) >= Number(item.promotionFrom)) {
-          return (
-            <span>
-              +{Math.floor(Number(item.quantity) / Number(item.promotionFrom))}
-            </span>
-          );
-        }
-        break;
-      }
-
-      default:
-        return '';
-    }
-  }
-
   render() {
     var imgPath = 'img/coffee/';
     var itemsInTable;
@@ -81,7 +64,7 @@ class Cart extends React.Component {
       this.canCheckout = false;
       itemsInTable = (
         <tr>
-          <td colSpan="6">Ваша корзина пуста</td>
+          <td colSpan="5">Ваша корзина пуста</td>
         </tr>
       );
     } else {
@@ -100,26 +83,32 @@ class Cart extends React.Component {
               <img alt="Item" src={imgPath + item.image} />
             </td>
             <td className="td-quantity">
-              <input
-                onChange={this.handleInput.bind(this, i)}
-                className="cart__table__input"
-                type="number"
-                value={this.props.itemsInCart[i].quantity}
-              />
-              <button
-                className="cart__table__button-add"
-                onClick={() => this.increaseQuantity(i)}
-              >
-                +
-              </button>
-              <button
-                className="cart__table__button-sub"
-                onClick={() => this.decreaseQuantity(i)}
-              >
-                -
-              </button>
+              <div className="td-quantity-input-container">
+                <input
+                  onChange={this.handleInput.bind(this, i)}
+                  className="cart__table__input"
+                  type="number"
+                  value={this.props.itemsInCart[i].quantity}
+                />
+                <div className="td-quantity-buttons-container">
+                  <button
+                    className="cart__table__button-add"
+                    onClick={() => this.increaseQuantity(i)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="cart__table__button-sub"
+                    onClick={() => this.decreaseQuantity(i)}
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+              <span className="span-promo-quantity">
+                {getPromoQuantityString(item)}
+              </span>
             </td>
-            <td className="td-promo-quantity">{this.getPromoQuantity(item)}</td>
             <td className="td-price">
               {item.price * this.props.itemsInCart[i].quantity} руб.
             </td>
@@ -149,11 +138,11 @@ class Cart extends React.Component {
               <table className="cart__table">
                 <tbody>
                   <tr>
-                    <th colSpan="6">Список товаров</th>
+                    <th colSpan="5">Список товаров</th>
                   </tr>
                   {itemsInTable}
                   <tr>
-                    <td colSpan="4" className="td-total">
+                    <td colSpan="3" className="td-total">
                       Итого:
                     </td>
                     <td>{totalPrice} руб.</td>

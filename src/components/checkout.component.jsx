@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CheckoutForm from './checkout-form.component.jsx';
+import { getPromoQuantityString } from './get-promo-quantity-string';
 import './checkout.component.scss';
 
 class Checkout extends React.Component {
@@ -27,7 +28,8 @@ class Checkout extends React.Component {
                 {this.props.itemsInCart.length ? (
                   this.props.itemsInCart.map((item, i) => (
                     <li key={i}>
-                      {item.title} - {item.quantity} шт.
+                      {item.title} - {item.quantity} шт.{' '}
+                      {getPromoQuantityString(item)}
                     </li>
                   ))
                 ) : (

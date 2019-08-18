@@ -17,22 +17,60 @@
     }
     margin-top: 10px;
     margin-bottom: 10px;
+
     .shop-coffee__item__inner {
+      position: relative;
       @extend .col-md-12;
       background: white;
       border: 2px solid $brown;
+
       .shop-coffee__item__kg {
         @extend .col-xs-3, .col-md-6, .col-lg-3;
         background: $green;
+
         .shop-coffee__item__kg__text {
           @extend .text-center;
           margin-bottom: 0;
           color: white;
         }
       }
+
+      .shop-coffee__promo {
+        right: 10px;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: #66a729;
+        border: 4px dotted white;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        position: absolute;
+        top: 180px;
+
+        @include breakpoint($xsSize) {
+          top: 240px;
+        }
+        @include breakpoint($mdSize) {
+          top: 150px;
+          transform: scale(0.8);
+        }
+        @include breakpoint($lgSize) {
+          top: 180px;
+          transform: scale(1);
+        }
+
+        .promo-type {
+          display: block;
+        }
+      }
+
       .shop-coffee__item__space {
         @extend .col-xs-4, .hidden-md, .col-lg-4;
       }
+
       .shop-coffee__item__price {
         @extend .col-xs-5, .col-md-6, .col-lg-5;
         background: $green;
@@ -44,6 +82,7 @@
           color: white;
         }
       }
+
       .shop-coffee__item__image {
         @extend .col-xs-12;
         padding: 30px;
@@ -51,6 +90,7 @@
           @extend .center-block, .img-responsive;
         }
       }
+
       .shop-coffee__item__description {
         padding: 10px 20px;
         background: $brown;
@@ -67,11 +107,13 @@
           }
         }
       }
+
       .shop-coffee__item__button-container {
         @extend .text-center;
 
         padding-bottom: 10px;
         background: $brown;
+
         .shop-coffee__item__button-container__button {
           @extend .btn, %transition;
           padding: 8px 25px;
